@@ -45,10 +45,22 @@ public class SignUpActivity extends BaseActivity implements
         findViewById(R.id.verifyEmail).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()!= null){
-            updateUI(mAuth.getCurrentUser());
-        }
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null) {
+            updateUI(currentUser);
+        }
+        updateUI(null);
+
+    }
+
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -69,6 +81,10 @@ public class SignUpActivity extends BaseActivity implements
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            memailField.getText().clear();
+                            mpasswordField.getText().clear();
+                            musernameField.getText().clear();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -85,27 +101,58 @@ public class SignUpActivity extends BaseActivity implements
         // [END create_user_with_email]
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null) {
-            updateUI(currentUser);
-        }
 
+    private void sendEmailVerification() {
+        // Disable button
+        findViewById(R.id.verifyEmail).setEnabled(false);
+        // Send verification email
+        // [START send_email_verification]
+        final FirebaseUser user = mAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // [START_EXCLUDE]
+                        // Re-enable button
+                        findViewById(R.id.verifyEmail).setEnabled(true);
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this,
+                                    "Verification email sent to " + user.getEmail()+ ". Check your spam folder if you don't receive the email!",
+                                    Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                            revokeAccess();
+                        } else {
+                            Log.e(TAG, "sendEmailVerification", task.getException());
+                            Toast.makeText(SignUpActivity.this,
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END send_email_verification]
+    }
+
+    private void revokeAccess() {
+        // Firebase sign out
+        if (mAuth != null) {
+            mAuth.signOut();
+        }
     }
 
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-
             findViewById(R.id.register).setVisibility(View.GONE);
             findViewById(R.id.link_login).setVisibility(View.VISIBLE);
+            findViewById(R.id.verifyEmail).setVisibility(View.VISIBLE);
             findViewById(R.id.verifyEmail).setEnabled(!user.isEmailVerified());
+
         } else {
             findViewById(R.id.register).setVisibility(View.VISIBLE);
-            findViewById(R.id.link_login).setVisibility(View.GONE);
+            findViewById(R.id.verifyEmail).setVisibility(View.GONE);
         }
     }
 
@@ -145,34 +192,6 @@ public class SignUpActivity extends BaseActivity implements
         return valid;
     }
 
-    private void sendEmailVerification() {
-        // Disable button
-        findViewById(R.id.verifyEmail).setEnabled(false);
-        // Send verification email
-        // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        // Re-enable button
-                        findViewById(R.id.verifyEmail).setEnabled(true);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this,
-                                    "Verification email sent to " + user.getEmail()+ ". Check your spam folder if you don't receive the email!",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.e(TAG, "sendEmailVerification", task.getException());
-                            Toast.makeText(SignUpActivity.this,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        // [END_EXCLUDE]
-                    }
-                });
-        // [END send_email_verification]
-    }
 
 
     @Override

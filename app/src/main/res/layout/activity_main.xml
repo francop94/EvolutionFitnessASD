@@ -13,7 +13,8 @@
         android:background="@drawable/back"
         android:orientation="vertical"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:paddingBottom="220dp">
 
 
         <ImageView
@@ -99,10 +100,10 @@
             android:id="@+id/googleSignIn"
             android:layout_width="260dp"
             android:layout_height="46dp"
-            android:gravity="center"
             android:layout_marginStart="58dp"
             android:layout_marginBottom="56dp"
             android:background="@drawable/common_google_signin_btn_text_dark"
+            android:gravity="center"
             android:text="Google Login" />
 
     </LinearLayout>

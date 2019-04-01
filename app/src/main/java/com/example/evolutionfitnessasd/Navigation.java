@@ -169,7 +169,7 @@ public class Navigation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            finish();
+            //finish();
             Intent training_schedule = new Intent(Navigation.this,TrainingSchedule.class);
             startActivity(training_schedule);
         } else if (id == R.id.nav_gallery) {
@@ -204,8 +204,8 @@ public class Navigation extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             finish();
-                            Intent menu = new Intent(Navigation.this, MainActivity.class);
-                            startActivity(menu);
+                            /*Intent menu = new Intent(Navigation.this, MainActivity.class);
+                            startActivity(menu);*/
                         }
                     });
     }
