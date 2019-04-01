@@ -88,7 +88,7 @@ public class Navigation extends AppCompatActivity
             }
 
             textname = headerView.findViewById(R.id.textName);
-            if (mAuth.getCurrentUser() != null) {
+            if (mAuth.getCurrentUser() != null||account!=null) {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -175,6 +175,8 @@ public class Navigation extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
+            Intent training_videos = new Intent(Navigation.this,TrainingVideos.class);
+            startActivity(training_videos);
 
         } else if (id == R.id.maps) {
 
@@ -204,8 +206,8 @@ public class Navigation extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             finish();
-                            /*Intent menu = new Intent(Navigation.this, MainActivity.class);
-                            startActivity(menu);*/
+                            Intent menu = new Intent(Navigation.this, MainActivity.class);
+                            startActivity(menu);
                         }
                     });
     }
