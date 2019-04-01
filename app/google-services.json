@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "473996489691",
+    "firebase_url": "https://evolutionfitness-42b6e.firebaseio.com",
+    "project_id": "evolutionfitness-42b6e",
+    "storage_bucket": "evolutionfitness-42b6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473996489691:android:bef4e8854927ec69",
+        "android_client_info": {
+          "package_name": "com.example.evolutionfitnessasd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473996489691-i33p29a3i76j3agmhfjif9sigtdbb1bb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.evolutionfitnessasd",
+            "certificate_hash": "10a95b3c330c8eac2678c6fada12652db933ab54"
+          }
+        },
+        {
+          "client_id": "473996489691-6btinv39o53aslfcqsk69v7quorv6giu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsuHw-cDSpM1_UCd_Ct4DKM-EtB8mbiV4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473996489691-6btinv39o53aslfcqsk69v7quorv6giu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
