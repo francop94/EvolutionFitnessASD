@@ -79,12 +79,11 @@ public class Navigation extends AppCompatActivity
             uid = mAuth.getUid();
             String email = mAuth.getCurrentUser().getEmail();
             String name = shared.getNOME();
-
-            myRef.child("Users").child(uid).child("Email:").setValue(email);
+            myRef.child("Users").child(uid).child("Email").setValue(email);
             if(name!=null) {
-                myRef.child("Users").child(uid).child("Name:").setValue(name);
+                myRef.child("Users").child(uid).child("Name").setValue(name);
             } else if(account!=null){
-                myRef.child("Users").child(uid).child("Name:").setValue(account.getDisplayName());
+                myRef.child("Users").child(uid).child("Name").setValue(account.getDisplayName());
             }
 
             textname = headerView.findViewById(R.id.textName);
@@ -95,8 +94,8 @@ public class Navigation extends AppCompatActivity
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         String name, email;
-                            name = dataSnapshot.child("Users").child(uid).child("Name:").getValue().toString();
-                            email = dataSnapshot.child("Users").child(uid).child("Email:").getValue().toString();
+                            name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
+                            email = dataSnapshot.child("Users").child(uid).child("Email").getValue().toString();
 
                             if (name != null) {
                                 textname.setText("Welcome, " + name);
