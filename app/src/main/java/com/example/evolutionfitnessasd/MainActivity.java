@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity implements
 
     private EditText mEmailField;
     private EditText mPasswordField;
+    private CheckBox check;
     // [START declare_auth]
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
@@ -57,6 +59,10 @@ public class MainActivity extends BaseActivity implements
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.googleSignIn).setOnClickListener(this);
         findViewById(R.id.forgotPassword).setOnClickListener(this);
+
+        //Checkbox
+        check = (CheckBox) findViewById(R.id.checkBox_admin);
+        check.setOnClickListener(this);
         // [START config_signin]
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -83,9 +89,6 @@ public class MainActivity extends BaseActivity implements
 
         if(currentUser!=null && currentUser.isEmailVerified()){
             revokeAccess();
-            updateUI(currentUser);
-        } else{
-            updateUI(currentUser);
         }
 
 
@@ -107,7 +110,6 @@ public class MainActivity extends BaseActivity implements
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateUI(null);
                 // [END_EXCLUDE]
             }
         }
@@ -129,7 +131,7 @@ public class MainActivity extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+
                             finish();
                             Intent menu = new Intent(MainActivity.this,Navigation.class);
                             startActivity(menu);
@@ -137,7 +139,7 @@ public class MainActivity extends BaseActivity implements
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
+
                         }
 
                         // [START_EXCLUDE]
@@ -181,7 +183,6 @@ public class MainActivity extends BaseActivity implements
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Incorrect email or password.",
                                         Toast.LENGTH_SHORT).show();
-                                updateUI(null);
                             }
                         }
                     });
@@ -194,7 +195,6 @@ public class MainActivity extends BaseActivity implements
 
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
                                 finish();
                                 Intent menu = new Intent(MainActivity.this, Navigation.class);
                                 startActivity(menu);
@@ -203,7 +203,6 @@ public class MainActivity extends BaseActivity implements
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Incorrect email or password.",
                                         Toast.LENGTH_SHORT).show();
-                                updateUI(null);
                             }
 
                             hideProgressDialog();
@@ -236,22 +235,18 @@ public class MainActivity extends BaseActivity implements
         return valid;
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI() {
         hideProgressDialog();
-        /*if (user != null) {
-            findViewById(R.id.fieldEmail).setVisibility(View.GONE);
-            findViewById(R.id.fieldPassword).setVisibility(View.GONE);
+        if(check.isChecked()) {
             findViewById(R.id.emailCreateAccountButton).setVisibility(View.GONE);
-            findViewById(R.id.emailSignInButton).setVisibility(View.GONE);
             findViewById(R.id.googleSignIn).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.fieldEmail).setVisibility(View.VISIBLE);
-            findViewById(R.id.fieldPassword).setVisibility(View.VISIBLE);
+        }
+        else{
             findViewById(R.id.emailCreateAccountButton).setVisibility(View.VISIBLE);
-            findViewById(R.id.emailSignInButton).setVisibility(View.VISIBLE);
             findViewById(R.id.googleSignIn).setVisibility(View.VISIBLE);
-        }*/
+        }
     }
+
     private void revokeAccess() {
         // Firebase sign out
         if (mAuth != null) {
@@ -284,6 +279,8 @@ public class MainActivity extends BaseActivity implements
             //finish();
             Intent reset = new Intent(MainActivity.this,ResetPassword.class);
             startActivity(reset);
+        } else if(i == R.id.checkBox_admin){
+            updateUI();
         } else{
             signInGoogle();
 

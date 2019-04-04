@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class shared {
     private static String NOME;
+    private static String COGNOME;
 
     public static String getNOME() {
         return NOME;
@@ -15,15 +16,14 @@ public class shared {
         NOME = nome;
     }
 
-    private static boolean isADMIN;
-
-    public static boolean getisADMIN() {
-        return isADMIN;
+    public static String getCOGNOME() {
+        return COGNOME;
     }
 
-    public static void setIsADMIN() {
-        isADMIN = true;
+    public static void setCOGNOME(String cognome) {
+        COGNOME = cognome;
     }
+
 
 
 }

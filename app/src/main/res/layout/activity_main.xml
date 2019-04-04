@@ -59,16 +59,6 @@
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:gravity="right"
-            android:text="Remember me"
-            android:textSize="16dip"
-            tools:targetApi="ice_cream_sandwich" />
-
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/emailSignInButton"
             android:layout_width="fill_parent"
@@ -77,6 +67,12 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="Login" />
+
+        <CheckBox
+            android:id="@+id/checkBox_admin"
+            android:layout_width="138dp"
+            android:layout_height="40dp"
+            android:text="Admin" />
 
         <TextView
             android:id="@+id/emailCreateAccountButton"
@@ -105,6 +101,7 @@
             android:background="@drawable/common_google_signin_btn_text_dark"
             android:gravity="center"
             android:text="Google Login" />
+
 
     </LinearLayout>
 

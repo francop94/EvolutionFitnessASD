@@ -1,6 +1,7 @@
 package com.example.evolutionfitnessasd;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -86,11 +88,12 @@ public class SignUpActivity extends BaseActivity implements
                             msurnameField.getText().clear();
                             mpasswordField.getText().clear();
                             musernameField.getText().clear();
+                            mpasswordField.clearFocus();
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "This email address is already registered!",
+                            Toast.makeText(SignUpActivity.this, "This email address is already registered or the email format is invalid!",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -170,7 +173,7 @@ public class SignUpActivity extends BaseActivity implements
         }
 
         String username = musernameField.getText().toString();
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(username)) {
             musernameField.setError("Required.");
             valid = false;
         } else {
@@ -179,14 +182,13 @@ public class SignUpActivity extends BaseActivity implements
         }
 
         String surname = msurnameField.getText().toString();
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(surname)) {
             msurnameField.setError("Required.");
             valid = false;
         } else {
+            shared.setCOGNOME(surname);
             msurnameField.setError(null);
         }
-
-
 
         String password = mpasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {

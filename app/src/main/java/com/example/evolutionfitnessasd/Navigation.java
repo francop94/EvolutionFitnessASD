@@ -79,10 +79,11 @@ public class Navigation extends AppCompatActivity
             uid = mAuth.getUid();
             String email = mAuth.getCurrentUser().getEmail();
             String name = shared.getNOME();
+            String surname = shared.getCOGNOME();
             myRef.child("Users").child(uid).child("Email").setValue(email);
-            if(name!=null) {
+            if(name!=null && surname!=null) {
                 myRef.child("Users").child(uid).child("Name").setValue(name);
-                myRef.child("Users").child(uid).child("Surname").setValue(name);
+                myRef.child("Users").child(uid).child("Surname").setValue(surname);
             } else if(account!=null){
                 myRef.child("Users").child(uid).child("Name").setValue(account.getDisplayName());
             }
@@ -95,15 +96,20 @@ public class Navigation extends AppCompatActivity
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         String name, surname;
+                        if(dataSnapshot.child("Users").child(uid).hasChild("Surname")) {
                             name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
                             surname = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
 
-                            if (name != null) {
-                                textname.setText("Welcome, " + name+ " "+surname);
+                            if (name != null && surname != null) {
+                                textname.setText("Welcome, " + name + " " + surname);
                             }
+                        }else{
+                            name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
+                            if (name != null) {
+                                textname.setText("Welcome, " + name);
+                            }
+                        }
 
-                            Log.d(TAG, "Name is: " + name);
-                            Log.d(TAG, "Surname is: " + surname);
                         }
 
 
@@ -132,9 +138,9 @@ public class Navigation extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            revokeAccess(); //da togliere
-            this.finish();
-            super.onBackPressed();
+            //revokeAccess(); //da togliere
+            finish();
+            //super.onBackPressed();
 
         }
 
