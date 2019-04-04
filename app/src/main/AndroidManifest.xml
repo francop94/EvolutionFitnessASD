@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ef_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainingVideos"></activity>
+        <activity android:name=".UploadSchedule"></activity>
+        <activity
+            android:name=".AdminMain"
+            android:label="@string/title_activity_admin_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TrainingVideos" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".TrainingSchedule" />
         <activity

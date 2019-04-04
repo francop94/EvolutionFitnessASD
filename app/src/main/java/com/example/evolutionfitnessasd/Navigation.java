@@ -82,6 +82,7 @@ public class Navigation extends AppCompatActivity
             myRef.child("Users").child(uid).child("Email").setValue(email);
             if(name!=null) {
                 myRef.child("Users").child(uid).child("Name").setValue(name);
+                myRef.child("Users").child(uid).child("Surname").setValue(name);
             } else if(account!=null){
                 myRef.child("Users").child(uid).child("Name").setValue(account.getDisplayName());
             }
@@ -93,16 +94,16 @@ public class Navigation extends AppCompatActivity
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
-                        String name, email;
+                        String name, surname;
                             name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
-                            email = dataSnapshot.child("Users").child(uid).child("Email").getValue().toString();
+                            surname = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
 
                             if (name != null) {
-                                textname.setText("Welcome, " + name);
+                                textname.setText("Welcome, " + name+ " "+surname);
                             }
 
                             Log.d(TAG, "Name is: " + name);
-                            Log.d(TAG, "Email is: " + email);
+                            Log.d(TAG, "Surname is: " + surname);
                         }
 
 

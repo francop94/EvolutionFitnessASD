@@ -15,5 +15,15 @@ public class shared {
         NOME = nome;
     }
 
+    private static boolean isADMIN;
+
+    public static boolean getisADMIN() {
+        return isADMIN;
+    }
+
+    public static void setIsADMIN() {
+        isADMIN = true;
+    }
+
 
 }

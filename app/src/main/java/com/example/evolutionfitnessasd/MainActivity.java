@@ -156,40 +156,62 @@ public class MainActivity extends BaseActivity implements
     }
     // [END signin]
 
-    private void signIn(String email, String password) {
+    private void signIn(final String email, final String password) {
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
             return;
         }
 
         showProgressDialog();
+        if (email.equals("chicco.1994@hotmail.it")) {
+            // [START sign_in_with_email]
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                finish();
+                                Intent admin = new Intent(MainActivity.this, AdminMain.class);
+                                startActivity(admin);
 
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            finish();
-                            Intent menu = new Intent(MainActivity.this, Navigation.class);
-                            startActivity(menu);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Incorrect email or password.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Incorrect email or password.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
                         }
+                    });
+        } else {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                        hideProgressDialog();
-                        // [END_EXCLUDE]
-                    }
-                });
-        // [END sign_in_with_email]
+                                Log.d(TAG, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                                finish();
+                                Intent menu = new Intent(MainActivity.this, Navigation.class);
+                                startActivity(menu);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Incorrect email or password.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
+
+                            hideProgressDialog();
+                            // [END_EXCLUDE]
+                        }
+                    });
+            // [END sign_in_with_email]
+        }
     }
 
     private boolean validateForm() {

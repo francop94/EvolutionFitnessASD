@@ -27,7 +27,7 @@ public class SignUpActivity extends BaseActivity implements
     private EditText memailField;
     private EditText mpasswordField;
     private EditText musernameField;
-
+    private EditText msurnameField;
     private FirebaseAuth mAuth;
 
     @Override
@@ -37,6 +37,7 @@ public class SignUpActivity extends BaseActivity implements
         // Views
         memailField = findViewById(R.id.emailF);
         musernameField = findViewById(R.id.usernameF);
+        msurnameField = findViewById(R.id.surnameF);
         mpasswordField = findViewById(R.id.passwordF);
 
         // Buttons
@@ -82,6 +83,7 @@ public class SignUpActivity extends BaseActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             memailField.getText().clear();
+                            msurnameField.getText().clear();
                             mpasswordField.getText().clear();
                             musernameField.getText().clear();
 
@@ -175,6 +177,15 @@ public class SignUpActivity extends BaseActivity implements
             shared.setNOME(username);
             musernameField.setError(null);
         }
+
+        String surname = msurnameField.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            msurnameField.setError("Required.");
+            valid = false;
+        } else {
+            msurnameField.setError(null);
+        }
+
 
 
         String password = mpasswordField.getText().toString();

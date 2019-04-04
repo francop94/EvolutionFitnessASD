@@ -34,7 +34,6 @@ public class TrainingSchedule extends AppCompatActivity {
     private String FROM;
     private String uid;
     private FirebaseAuth mAuth;
-    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +41,7 @@ public class TrainingSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_training_schedule);
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getUid();
-        System.out.println(uid);
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://evolutionfitness-42b6e.appspot.com");
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         myRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://evolutionfitness-42b6e.firebaseio.com/");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,9 +66,8 @@ public class TrainingSchedule extends AppCompatActivity {
             }
         });
         ImageView imageView = findViewById(R.id.imageView);
-        if (flag) {
-            Glide.with(getApplicationContext()).load(""+uid+"/"+"schedule.jpg").into(imageView);
-        }
+        Glide.with(getApplicationContext()).load("gs://evolutionfitness-42b6e.appspot.com/"+uid+"/"+"schedule.jpg").into(imageView);
+
     }
 
     @Override
@@ -111,7 +108,6 @@ public class TrainingSchedule extends AppCompatActivity {
         }
     }
     protected void sendEmail(String from) {
-        flag = true;
         Log.i("Send email", "");
         String[] TO = {"chicco.1994@hotmail.it"};
         String[] FROM = {from};
