@@ -45,7 +45,7 @@ public class SignUpActivity extends BaseActivity implements
         // Buttons
         findViewById(R.id.link_login).setOnClickListener(this);
         findViewById(R.id.register).setOnClickListener(this);
-        findViewById(R.id.verifyEmail).setOnClickListener(this);
+        //findViewById(R.id.verifyEmail).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -81,6 +81,7 @@ public class SignUpActivity extends BaseActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            sendEmailVerification();
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
@@ -109,7 +110,7 @@ public class SignUpActivity extends BaseActivity implements
 
     private void sendEmailVerification() {
         // Disable button
-        findViewById(R.id.verifyEmail).setEnabled(false);
+        //findViewById(R.id.verifyEmail).setEnabled(false);
         // Send verification email
         // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -119,7 +120,7 @@ public class SignUpActivity extends BaseActivity implements
                     public void onComplete(@NonNull Task<Void> task) {
                         // [START_EXCLUDE]
                         // Re-enable button
-                        findViewById(R.id.verifyEmail).setEnabled(true);
+                        //findViewById(R.id.verifyEmail).setEnabled(true);
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this,
                                     "Verification email sent to " + user.getEmail()+ ". Check your spam folder if you don't receive the email!",
@@ -152,12 +153,12 @@ public class SignUpActivity extends BaseActivity implements
         if (user != null) {
             findViewById(R.id.register).setVisibility(View.GONE);
             findViewById(R.id.link_login).setVisibility(View.VISIBLE);
-            findViewById(R.id.verifyEmail).setVisibility(View.VISIBLE);
-            findViewById(R.id.verifyEmail).setEnabled(!user.isEmailVerified());
+            /*findViewById(R.id.verifyEmail).setVisibility(View.VISIBLE);
+            findViewById(R.id.verifyEmail).setEnabled(!user.isEmailVerified());*/
 
         } else {
             findViewById(R.id.register).setVisibility(View.VISIBLE);
-            findViewById(R.id.verifyEmail).setVisibility(View.GONE);
+            //findViewById(R.id.verifyEmail).setVisibility(View.GONE);
         }
     }
 
@@ -218,9 +219,9 @@ public class SignUpActivity extends BaseActivity implements
             Intent signIn = new Intent(SignUpActivity.this,MainActivity.class);
             startActivity(signIn);
         }
-        else if(i == R.id.verifyEmail){
+        /*else if(i == R.id.verifyEmail){
             sendEmailVerification();
-        }
+        }*/
     }
 }
 

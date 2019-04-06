@@ -37,9 +37,13 @@
                 android:id="@+id/fieldEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoText="true"
                 android:drawableLeft="@drawable/ic_action_username"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textColorLink="@color/common_google_signin_btn_text_dark_focused"
+                android:textCursorDrawable="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -56,7 +60,10 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_action_password"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@android:color/black"
+                android:textColorLink="@color/common_google_signin_btn_text_dark_focused"
+                android:textCursorDrawable="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton

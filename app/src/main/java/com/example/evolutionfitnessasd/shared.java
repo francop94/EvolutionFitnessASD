@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class shared {
     private static String NOME;
     private static String COGNOME;
+    private static String UID;
 
     public static String getNOME() {
         return NOME;
@@ -24,6 +25,12 @@ public class shared {
         COGNOME = cognome;
     }
 
+    public static String getUID() {
+        return UID;
+    }
 
+    public static void setUID(String uid) {
+        UID = uid;
+    }
 
 }
