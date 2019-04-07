@@ -70,7 +70,7 @@ public class TrainingSchedule extends AppCompatActivity {
                                 String fileUrl;
                                 Uri downloadUrl = uri;
                                 fileUrl = downloadUrl.toString();
-                                Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).fitCenter().into(imageView);
+                                Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).into(imageView);
 
 
                             }
@@ -90,8 +90,8 @@ public class TrainingSchedule extends AppCompatActivity {
                             String fileUrl;
                             Uri downloadUrl = uri;
                             fileUrl = downloadUrl.toString();
-                            Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).fitCenter().into(imageView);
-
+                            Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).into(imageView);
+                            imageView.setOnTouchListener(new Touch());
 
                         }
                     });
