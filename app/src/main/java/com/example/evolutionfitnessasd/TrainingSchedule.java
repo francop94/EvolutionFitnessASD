@@ -14,6 +14,7 @@ import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,13 +26,14 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class TrainingSchedule extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference myRef;
     private static final String TAG = "Training Schedule";
-    private String FROM;
+    private String FROM, NOME, COGNOME;
     private String uid;
     private FirebaseAuth mAuth;
 
@@ -41,13 +43,66 @@ public class TrainingSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_training_schedule);
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getUid();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        final RequestOptions requestOptions = new RequestOptions();
+        //requestOptions.placeholder(R.drawable.ic_placeholder);
+        //requestOptions.error(R.drawable.ic_error);
         myRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://evolutionfitness-42b6e.firebaseio.com/");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 FROM = dataSnapshot.child("Users").child(uid).child("Email").getValue().toString();
+                NOME = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
+                if(dataSnapshot.child("Users").child(uid).hasChild("Surname")) {
+                    COGNOME = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
+                }
+                final ImageView imageView = findViewById(R.id.imageView);
+
+                if(COGNOME!=null) {
+
+                    try {
+                        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://evolutionfitness-42b6e.appspot.com/" + NOME + " " + COGNOME + "/schedule.jpg");
+
+                        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                // getting image uri and converting into string
+                                String fileUrl;
+                                Uri downloadUrl = uri;
+                                fileUrl = downloadUrl.toString();
+                                Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).fitCenter().into(imageView);
+
+
+                            }
+                        });
+                    } catch (Exception e){
+                        Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
+                        Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
+                    }
+                }
+                else {
+                    try{
+                    mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://evolutionfitness-42b6e.appspot.com/" + NOME + "/schedule.jpg");
+                    mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // getting image uri and converting into string
+                            String fileUrl;
+                            Uri downloadUrl = uri;
+                            fileUrl = downloadUrl.toString();
+                            Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).fitCenter().into(imageView);
+
+
+                        }
+                    });
+                }catch (Exception e){
+                        Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
+                        Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
+                    }
+                }
             }
+
+
 
             @Override
             public void onCancelled(DatabaseError error) {
@@ -65,8 +120,6 @@ public class TrainingSchedule extends AppCompatActivity {
                 sendEmail(FROM);
             }
         });
-        ImageView imageView = findViewById(R.id.imageView);
-        Glide.with(getApplicationContext()).load("gs://evolutionfitness-42b6e.appspot.com/"+uid+"/"+"schedule.jpg").into(imageView);
 
     }
 
