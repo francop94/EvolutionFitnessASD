@@ -181,7 +181,7 @@ public class Navigation extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
-            Intent training_videos = new Intent(Navigation.this,TrainingVideos.class);
+            Intent training_videos = new Intent(Navigation.this,MuscleGroups.class);
             startActivity(training_videos);
 
         } else if (id == R.id.maps) {

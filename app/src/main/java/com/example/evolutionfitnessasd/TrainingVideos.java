@@ -6,18 +6,35 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class TrainingVideos extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private TextView mMuscleType;
+    private boolean pectoral, biceps, triceps, quadriceps, shoulders, abs, dorsal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_videos);
+        Bundle mBundle = getIntent().getExtras();
+        mMuscleType = (TextView) findViewById(R.id.muscleType);
+            if (mBundle != null) {
+                mMuscleType.setText(mBundle.getString("Title"));
+                if(mBundle.getString("Title").equals("Pectoral")){ pectoral=true;}
+                if(mBundle.getString("Title").equals("Biceps")){ biceps=true;}
+                if(mBundle.getString("Title").equals("Triceps")){ triceps=true;}
+                if(mBundle.getString("Title").equals("Quadriceps")){ quadriceps=true;}
+                if(mBundle.getString("Title").equals("Abs")){ abs=true;}
+                if(mBundle.getString("Title").equals("Shoulders")){ shoulders=true;}
+                if(mBundle.getString("Title").equals("Dorsal")){ dorsal=true;}
+            }
+
         setUpRecyclerView();
         populateRecyclerView();
 
@@ -67,22 +84,131 @@ public class TrainingVideos extends AppCompatActivity {
      */
     private ArrayList<YoutubeVideoModel> generateDummyVideoList() {
         ArrayList<YoutubeVideoModel> youtubeVideoModelArrayList = new ArrayList<>();
+        if(pectoral) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_pectoral);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_pectoral);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_pectoral);
 
-        //get the video id array, title array and duration array from strings.xml
-        String[] videoIDArray = getResources().getStringArray(R.array.video_id_array);
-        String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array);
-        String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array);
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
 
-        //loop through all items and add them to arraylist
-        for (int i = 0; i < videoIDArray.length; i++) {
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
 
-            YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
-            youtubeVideoModel.setVideoId(videoIDArray[i]);
-            youtubeVideoModel.setTitle(videoTitleArray[i]);
-            youtubeVideoModel.setDuration(videoDurationArray[i]);
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
 
-            youtubeVideoModelArrayList.add(youtubeVideoModel);
+            }
+        }
+        if(biceps) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_biceps);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_biceps);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_biceps);
 
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
+        }
+        if(triceps) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_triceps);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_triceps);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_triceps);
+
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
+        }
+        if(quadriceps) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_quadriceps);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_quadriceps);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_quadriceps);
+
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
+        }
+        if(abs) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_abs);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_abs);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_abs);
+
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
+        }
+        if(dorsal) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_dorsal);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_dorsal);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_dorsal);
+
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
+        }
+        if(shoulders) {
+            //get the video id array, title array and duration array from strings.xml
+            String[] videoIDArray = getResources().getStringArray(R.array.video_id_array_shoulders);
+            String[] videoTitleArray = getResources().getStringArray(R.array.video_title_array_shoulders);
+            String[] videoDurationArray = getResources().getStringArray(R.array.video_duration_array_shoulders);
+
+            //loop through all items and add them to arraylist
+            for (int i = 0; i < videoIDArray.length; i++) {
+
+                YoutubeVideoModel youtubeVideoModel = new YoutubeVideoModel();
+                youtubeVideoModel.setVideoId(videoIDArray[i]);
+                youtubeVideoModel.setTitle(videoTitleArray[i]);
+                youtubeVideoModel.setDuration(videoDurationArray[i]);
+
+                youtubeVideoModelArrayList.add(youtubeVideoModel);
+
+            }
         }
 
         return youtubeVideoModelArrayList;

@@ -6,7 +6,10 @@
 
     <string name="label_emailpassword">Email/Password Authentication</string>
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
-    <string-array name="video_id_array">
+    <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
+    <string name="close_player_activity">Close Player activity</string>
+
+    <string-array name="video_id_array_pectoral">
         <item>CqhpNxI8qYw</item>
         <item>sasCrpgHDy8</item>
         <item>iJeh3x09Ya8</item>
@@ -18,9 +21,7 @@
         <item>5SQrpBQne7A</item>
         <item>5WJ3r67ORxo</item>
     </string-array>
-    <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
-    <string name="close_player_activity">Close Player activity</string>
-    <string-array name="video_title_array">
+    <string-array name="video_title_array_pectoral">
         <item>Android Security Lock Demo</item>
         <item>Android Sectioned RecyclerView Demo</item>
         <item>Android Home Screen Widgets Demo</item>
@@ -33,7 +34,7 @@
         <item>Android Fingerprint Authentication Demo</item>
     </string-array>
 
-    <string-array name="video_duration_array">
+    <string-array name="video_duration_array_pectoral">
         <item>02:48</item>
         <item>00:44</item>
         <item>01:01</item>
@@ -44,6 +45,86 @@
         <item>00:45</item>
         <item>00:52</item>
         <item>00:28</item>
+    </string-array>
+
+    <string-array name="video_id_array_biceps">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_biceps">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_biceps">
+        <item>02:48</item>
+        <item>00:44</item>
+    </string-array>
+    <string-array name="video_id_array_triceps">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_triceps">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_triceps">
+        <item>02:48</item>
+        <item>00:44</item>
+    </string-array>
+    <string-array name="video_id_array_shoulders">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_shoulders">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_shoulders">
+        <item>02:48</item>
+        <item>00:44</item>
+    </string-array>
+
+    <string-array name="video_id_array_dorsal">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_dorsal">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_dorsal">
+        <item>02:48</item>
+        <item>00:44</item>
+    </string-array>
+    <string-array name="video_id_array_quadriceps">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_quadriceps">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_quadriceps">
+        <item>02:48</item>
+        <item>00:44</item>
+    </string-array>
+    <string-array name="video_id_array_abs">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+    </string-array>
+    <string-array name="video_title_array_abs">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array_abs">
+        <item>02:48</item>
+        <item>00:44</item>
     </string-array>
 
     <string name="hint_user_id">User ID</string>
