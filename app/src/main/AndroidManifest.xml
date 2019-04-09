@@ -31,6 +31,7 @@
         <activity
             android:name=".Navigation"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".YoutubePlayerActivity"></activity>
         <activity android:name=".BaseActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
