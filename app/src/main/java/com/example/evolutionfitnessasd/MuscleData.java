@@ -5,17 +5,17 @@ public class MuscleData {
     private String muscleName;
     private int muscleImage;
 
-    public MuscleData(String flowerName, int flowerImage) {
-        this.muscleName = flowerName;
+    public MuscleData(String muscleName, int muscleImage) {
+        this.muscleName = muscleName;
 
-        this.muscleImage = flowerImage;
+        this.muscleImage = muscleImage;
     }
 
-    public String getFlowerName() {
+    public String getMuscleName() {
         return muscleName;
     }
 
-    public int getFlowerImage() {
+    public int getMuscleImage() {
         return muscleImage;
     }
 }

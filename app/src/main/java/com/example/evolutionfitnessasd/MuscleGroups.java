@@ -24,30 +24,17 @@ public class MuscleGroups extends AppCompatActivity {
         mMuscleList = new ArrayList<>();
         mMuscleData = new MuscleData("Pectoral", R.drawable.pectoral);
         mMuscleList.add(mMuscleData);
-
-        mMuscleList = new ArrayList<>();
         mMuscleData = new MuscleData("Biceps", R.drawable.biceps);
         mMuscleList.add(mMuscleData);
-
-        mMuscleList = new ArrayList<>();
         mMuscleData = new MuscleData("Triceps", R.drawable.triceps);
         mMuscleList.add(mMuscleData);
-
-        mMuscleList = new ArrayList<>();
         mMuscleData = new MuscleData("Quadriceps", R.drawable.quadriceps);
         mMuscleList.add(mMuscleData);
-
-        mMuscleList = new ArrayList<>();
-        mMuscleData = new MuscleData("Abs", R.drawable.abs);
-        mMuscleList.add(mMuscleData);
-
-        mMuscleList = new ArrayList<>();
         mMuscleData = new MuscleData("Shoulders", R.drawable.shoulders);
-
-        mMuscleList = new ArrayList<>();
-        mMuscleData = new MuscleData("Dorsal", R.drawable.dorsal);
-
         mMuscleList.add(mMuscleData);
+        mMuscleData = new MuscleData("Dorsal", R.drawable.dorsal);
+        mMuscleList.add(mMuscleData);
+        mMuscleData = new MuscleData("Abs", R.drawable.abs);
         mMuscleList.add(mMuscleData);
 
         MyAdapter myAdapter = new MyAdapter(MuscleGroups.this, mMuscleList);
