@@ -165,7 +165,7 @@ public class MainActivity extends BaseActivity implements
         }
 
         showProgressDialog();
-        if (email.equals("chicco.1994@hotmail.it")) {
+        /*if (email.equals("chicco.1994@hotmail.it")) {
             // [START sign_in_with_email]
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -187,7 +187,7 @@ public class MainActivity extends BaseActivity implements
                         }
                     });
         } else {
-            mAuth.signInWithEmailAndPassword(email, password)
+           */ mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity implements
                     });
             // [END sign_in_with_email]
         }
-    }
+    //}
 
     private boolean validateForm() {
         boolean valid = true;

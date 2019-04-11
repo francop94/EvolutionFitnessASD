@@ -8,6 +8,7 @@
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
     <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
     <string name="close_player_activity">Close Player activity</string>
+    <string name="google_maps_key">AIzaSyA4i0XaBiYhGuVMCh_D1-D5m0GTZ4Q77TY</string>
 
     <string-array name="video_id_array_pectoral">
         <item>_Yhyp-_hX2s</item>
@@ -128,4 +129,5 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_admin_main">AdminMain</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

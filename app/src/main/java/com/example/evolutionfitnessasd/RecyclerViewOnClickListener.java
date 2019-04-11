@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 
 class RecyclerViewOnClickListener implements RecyclerView.OnItemTouchListener {
     private  RecyclerViewOnClickListener.OnItemClickListener mListener;
-    private TrainingVideos trainingVideo;
     public interface OnItemClickListener {
         public void onItemClick(View view, int position);
 

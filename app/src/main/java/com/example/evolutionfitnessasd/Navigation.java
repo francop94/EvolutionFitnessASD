@@ -3,8 +3,6 @@ package com.example.evolutionfitnessasd;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,14 +23,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.UUID;
 
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -104,9 +99,11 @@ public class Navigation extends AppCompatActivity
                                 textname.setText("Welcome, " + name + " " + surname);
                             }
                         }else{
-                            name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
-                            if (name != null) {
-                                textname.setText("Welcome, " + name);
+                            if(dataSnapshot.child("Users").child(uid).hasChild("Name")) {
+                                name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
+                                if (name != null) {
+                                    textname.setText("Welcome, " + name);
+                                }
                             }
                         }
 
@@ -162,7 +159,8 @@ public class Navigation extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent user_profile = new Intent(Navigation.this, Contacts.class);
+            startActivity(user_profile);
         }
 
         return super.onOptionsItemSelected(item);
@@ -185,6 +183,8 @@ public class Navigation extends AppCompatActivity
             startActivity(training_videos);
 
         } else if (id == R.id.maps) {
+            Intent maps = new Intent(Navigation.this,MapsActivity.class);
+            startActivity(maps);
 
         } else if (id == R.id.nav_share) {
 
