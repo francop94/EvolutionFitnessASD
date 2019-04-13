@@ -123,8 +123,8 @@ public class SignUpActivity extends BaseActivity implements
                         //findViewById(R.id.verifyEmail).setEnabled(true);
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this,
-                                    "Verification email sent to " + user.getEmail()+ ". Check your spam folder if you don't receive the email!",
-                                    Toast.LENGTH_SHORT).show();
+                                    "Verification email sent to " + user.getEmail()+"\n"+"Check your spam folder if you don't receive the email!",
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             revokeAccess();
@@ -132,7 +132,7 @@ public class SignUpActivity extends BaseActivity implements
                             Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(SignUpActivity.this,
                                     "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
                         // [END_EXCLUDE]
