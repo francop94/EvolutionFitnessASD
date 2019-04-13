@@ -117,6 +117,8 @@ public class AdminMain extends AppCompatActivity
         } else if (id == R.id.maps) {
 
         } else if (id == R.id.nav_share) {
+            Intent share = new Intent(AdminMain.this,ShareImageAdmin.class);
+            startActivity(share);
 
         } else if (id == R.id.disconnect){
             revokeAccess();

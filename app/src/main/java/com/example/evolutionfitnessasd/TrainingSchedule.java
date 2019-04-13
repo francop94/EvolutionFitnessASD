@@ -57,6 +57,7 @@ public class TrainingSchedule extends AppCompatActivity {
                     COGNOME = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
                 }
                 final ImageView imageView = findViewById(R.id.imageView);
+                //imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
                 if(COGNOME!=null) {
 
@@ -71,6 +72,8 @@ public class TrainingSchedule extends AppCompatActivity {
                                 Uri downloadUrl = uri;
                                 fileUrl = downloadUrl.toString();
                                 Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).into(imageView);
+                                imageView.setOnTouchListener(new Touch());
+                                imageView.setScaleType(ImageView.ScaleType.MATRIX);
 
 
                             }
@@ -92,6 +95,7 @@ public class TrainingSchedule extends AppCompatActivity {
                             fileUrl = downloadUrl.toString();
                             Glide.with(getApplicationContext()).load(fileUrl).apply(requestOptions).into(imageView);
                             imageView.setOnTouchListener(new Touch());
+                            imageView.setScaleType(ImageView.ScaleType.MATRIX);
 
                         }
                     });
@@ -171,8 +175,6 @@ public class TrainingSchedule extends AppCompatActivity {
 
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_REFERRER, FROM);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Schedule request");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Please send me my schedule");
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));

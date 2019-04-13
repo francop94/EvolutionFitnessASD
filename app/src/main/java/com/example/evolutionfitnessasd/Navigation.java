@@ -159,8 +159,6 @@ public class Navigation extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent user_profile = new Intent(Navigation.this, Contacts.class);
-            startActivity(user_profile);
         }
 
         return super.onOptionsItemSelected(item);
@@ -187,6 +185,8 @@ public class Navigation extends AppCompatActivity
             startActivity(maps);
 
         } else if (id == R.id.nav_share) {
+            Intent share = new Intent(Navigation.this,ShareImageUser.class);
+            startActivity(share);
 
         } else if (id == R.id.contacts) {
 
@@ -212,8 +212,6 @@ public class Navigation extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             finish();
-                            Intent menu = new Intent(Navigation.this, MainActivity.class);
-                            startActivity(menu);
                         }
                     });
     }
