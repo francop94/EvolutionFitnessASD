@@ -16,7 +16,7 @@
         android:layout_marginTop="18dp"
         android:fontFamily="@font/krona_one"
         android:gravity="center"
-        android:text=""
+        android:text="Staff"
         android:textColor="@color/design_default_color_primary"
         android:textSize="30sp"
         android:textStyle="bold|italic" />

@@ -189,7 +189,8 @@ public class Navigation extends AppCompatActivity
             startActivity(share);
 
         } else if (id == R.id.contacts) {
-
+            Intent staff = new Intent(Navigation.this,Contacts.class);
+            startActivity(staff);
         }
         else if (id == R.id.disconnect){
             revokeAccess();
