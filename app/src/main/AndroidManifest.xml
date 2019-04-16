@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.evolutionfitnessasd"
     android:installLocation="preferExternal">
     <!--
@@ -19,6 +20,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +30,9 @@
         android:roundIcon="@mipmap/ef_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShareImageUser"></activity>
+        <activity android:name=".TrainingCalendar"></activity>
+        <activity android:name=".UploadCalendar" />
+        <activity android:name=".ShareImageUser" />
         <activity android:name=".ShareImageAdmin" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

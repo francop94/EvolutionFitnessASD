@@ -10,7 +10,7 @@
         android:title="Training schedule" />
     <item
         android:id="@+id/nav_gallery"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="Training calendar" />
     <item
         android:id="@+id/nav_slideshow"

@@ -175,7 +175,8 @@ public class Navigation extends AppCompatActivity
             Intent training_schedule = new Intent(Navigation.this,TrainingSchedule.class);
             startActivity(training_schedule);
         } else if (id == R.id.nav_gallery) {
-
+            Intent calendar = new Intent(Navigation.this,TrainingCalendar.class);
+            startActivity(calendar);
         } else if (id == R.id.nav_slideshow) {
             Intent training_videos = new Intent(Navigation.this,MuscleGroups.class);
             startActivity(training_videos);

@@ -108,9 +108,10 @@ public class AdminMain extends AppCompatActivity
             //finish();
             Intent upload_schedule = new Intent(AdminMain.this,UploadSchedule.class);
             startActivity(upload_schedule);
-        } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_slideshow) {
+            Intent upload_calendar = new Intent(AdminMain.this,UploadCalendar.class);
+            startActivity(upload_calendar);
+        } else if (id == R.id.manageUser) {
             /*Intent upload_videos = new Intent(AdminMain.this,TrainingVideos.class);
             startActivity(upload_videos);*/
 

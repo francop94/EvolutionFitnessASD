@@ -151,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .add(gym, myPos));
         polyline1.setColor(Color.RED);
         polyline1.setWidth(v);
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(midPoint(42.0940383, 12.489836143337936, lat,lng)).zoom(13).bearing(angleBteweenCoordinate(42.0940383, 12.489836143337936, lat,lng)).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(midPoint(42.0940383, 12.489836143337936, lat,lng)).zoom(12).bearing(angleBteweenCoordinate(42.0940383, 12.489836143337936, lat,lng)).build();
 
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         Toast.makeText(this, "Your distance to go to the gym is: "+distance+"m!", Toast.LENGTH_LONG).show();

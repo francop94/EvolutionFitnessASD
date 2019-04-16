@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Navigation"
-    tools:showIn="@layout/app_bar_navigation"/>
+    tools:showIn="@layout/app_bar_navigation">
+
+    <ImageView
+        android:id="@+id/icon"
+        style="@style/ThemeOverlay.FirebaseIcon"
+        android:layout_width="295dp"
+        android:layout_height="205dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="62dp"
+        android:src="@drawable/login_logo" />
+
+    <TextView
+        android:id="@+id/appDescription"
+        android:layout_width="348dp"
+        android:layout_height="221dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="263dp"
+        android:fontFamily="@font/krona_one"
+        android:text="Welcome to Evolution Fitness ASD! Please select an action in the menu to start your work out"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/contacts"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="539dp"
+        android:fontFamily="@font/krona_one"
+        android:text="Contacts"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/TelDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="580dp"
+        android:fontFamily="@font/krona_one"
+        android:text="Tel: 06 9034357"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/SiteDescription"
+        android:layout_width="383dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="616dp"
+        android:fontFamily="@font/krona_one"
+        android:text="Site: www.facebook.com/evolutionfitnessasd"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+
+</RelativeLayout>

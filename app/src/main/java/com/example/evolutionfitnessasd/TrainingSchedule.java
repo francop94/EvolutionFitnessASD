@@ -2,6 +2,7 @@ package com.example.evolutionfitnessasd;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.VideoView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -98,7 +100,13 @@ public class TrainingSchedule extends AppCompatActivity {
                             imageView.setScaleType(ImageView.ScaleType.MATRIX);
 
                         }
-                    });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_LONG).show();
+                            Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
+                        }
+                    });;
                 }catch (Exception e){
                         Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
                         Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
