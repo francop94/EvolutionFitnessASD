@@ -186,11 +186,13 @@ public class TrainingSchedule extends AppCompatActivity {
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            Toast.makeText(TrainingSchedule.this,
+                    "Please select your email client to proceed sending an email to the administrators.", Toast.LENGTH_LONG).show();
             finish();
             Log.i("Finished sending email", "");
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(TrainingSchedule.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    "There is no email client installed.", Toast.LENGTH_LONG).show();
         }
     }
 

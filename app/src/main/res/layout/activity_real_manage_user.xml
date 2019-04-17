@@ -1,0 +1,115 @@
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="0dp"
+    android:background="@drawable/back"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingTop="56dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="220dp">
+
+    <TextView
+        android:id="@+id/schedule_up"
+        android:layout_width="366dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/krona_one"
+        android:gravity="center"
+        android:text="Set payments"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <!--  Name Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/abbonamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of subscription/for how many months"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="none" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinMonths"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="8dp"
+        android:popupBackground="@android:color/white"
+        android:scrollbars="none"
+        android:spinnerMode="dropdown" />
+
+    <!--  Surname Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/annualFee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of annual fee"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="none" />
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Email Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/medicalCertificate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of medical certificate"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="none" />
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Save Button -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/register"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:text="Save" />
+
+    <!-- Delete Button -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/verifyEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="Delete user" />
+
+</LinearLayout>
+</ScrollView>

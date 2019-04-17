@@ -30,7 +30,9 @@
         android:roundIcon="@mipmap/ef_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainingCalendar"></activity>
+        <activity android:name=".RealManageUser"></activity>
+        <activity android:name=".ManageUser" />
+        <activity android:name=".TrainingCalendar" />
         <activity android:name=".UploadCalendar" />
         <activity android:name=".ShareImageUser" />
         <activity android:name=".ShareImageAdmin" />
