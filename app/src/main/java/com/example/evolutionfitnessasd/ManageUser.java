@@ -28,11 +28,15 @@ public class ManageUser extends AppCompatActivity{
     private ArrayList<String> userList;
     private ArrayAdapter<String> userAdapter;
     private ListView list;
+    private String chosenName;
+    private int index;
+    private ArrayList<String> UID;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_schedule);
         userList = new ArrayList<>();
+        UID = new ArrayList<>();
         list = findViewById(R.id.list_users);
         myRef= FirebaseDatabase.getInstance().getReferenceFromUrl("https://evolutionfitness-42b6e.firebaseio.com/");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -46,24 +50,39 @@ public class ManageUser extends AppCompatActivity{
                 list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                 list.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        shared.setUID(parent.getItemAtPosition(position).toString());
-                        System.out.println(shared.getUID());
-                        Intent upload = new Intent(ManageUser.this, RealManageUser.class);
-                        startActivity(upload);
+                        chosenName=parent.getItemAtPosition(position).toString();
+                        if(userList.get(position).equals(chosenName)){
+                            shared.setUIDMan(UID.get(position));
+                        }
+                        Intent manage = new Intent(ManageUser.this, RealManageUser.class);
+                        startActivity(manage);
                     }
                 });
                 userAdapter.clear();
                 while(uid.iterator().hasNext()) {
                     DataSnapshot snap=uid.iterator().next();
+                    if(snap.getKey()!=null) {
+                        UID.add(snap.getKey());
+                    }
                     if (snap.hasChild("Surname")) {
-                        names = snap.child("Name").getValue().toString();
-                        surnames = snap.child("Surname").getValue().toString();
-                        userList.add(names+" "+surnames);
-                    } else{
-                        String names=snap.child("Name").getValue().toString();
-                        userList.add(names);
+                        try {
+                            names = snap.child("Name").getValue().toString();
+                            surnames = snap.child("Surname").getValue().toString();
+                            userList.add(names + " " + surnames);
+                        } catch(NullPointerException e){
+                            Log.d("MANAGE USER: ", e.getLocalizedMessage());
+                        }
+                    } else {
+                        try {
+                            String names = snap.child("Name").getValue().toString();
+                            userList.add(names);
+                        } catch(NullPointerException e){
+                            Log.d("MANAGE USER: ", e.getLocalizedMessage());
+                        }
+
                     }
                 }
+
 
             }
             @Override

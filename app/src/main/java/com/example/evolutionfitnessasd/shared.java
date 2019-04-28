@@ -8,6 +8,7 @@ public class shared {
     private static String NOME;
     private static String COGNOME;
     private static String UID;
+    private static String UIDM;
 
     public static String getNOME() {
         return NOME;
@@ -31,6 +32,13 @@ public class shared {
 
     public static void setUID(String uid) {
         UID = uid;
+    }
+    public static String getUIDMan() {
+        return UIDM;
+    }
+
+    public static void setUIDMan(String uid) {
+        UIDM = uid;
     }
 
 }

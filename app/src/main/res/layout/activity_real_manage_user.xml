@@ -92,7 +92,7 @@ android:fitsSystemWindows="true">
 
     <!-- Save Button -->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/register"
+        android:id="@+id/save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -102,7 +102,7 @@ android:fitsSystemWindows="true">
 
     <!-- Delete Button -->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/verifyEmail"
+        android:id="@+id/delete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

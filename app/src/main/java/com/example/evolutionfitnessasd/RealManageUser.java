@@ -1,27 +1,38 @@
 package com.example.evolutionfitnessasd;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class RealManageUser extends AppCompatActivity {
+public class RealManageUser extends AppCompatActivity implements
+        View.OnClickListener{
     private Spinner spinMonths;
     private Calendar myCalendar;
     private EditText abbonamento;
     private EditText annualFee;
     private EditText medicalCertificate;
     private boolean setAbb, setAnn, setMed;
+    String dateAbb, dateAnn, dateMed, month;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,10 @@ public class RealManageUser extends AppCompatActivity {
         abbonamento= (EditText) findViewById(R.id.abbonamento);
         annualFee= (EditText) findViewById(R.id.annualFee);
         medicalCertificate= (EditText) findViewById(R.id.medicalCertificate);
+        // Buttons
+        findViewById(R.id.save).setOnClickListener(this);
+        findViewById(R.id.delete).setOnClickListener(this);
+        myRef= FirebaseDatabase.getInstance().getReferenceFromUrl("https://evolutionfitness-42b6e.firebaseio.com/");
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -102,10 +117,12 @@ public class RealManageUser extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int position, long id) {
+                month = arg0.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
 
@@ -113,18 +130,78 @@ public class RealManageUser extends AppCompatActivity {
     private void updateLabelAbb() {
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
-
         abbonamento.setText(sdf.format(myCalendar.getTime()));
+        dateAbb = abbonamento.getText().toString();
     }
     private void updateLabelAnn() {
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
         annualFee.setText(sdf.format(myCalendar.getTime()));
+        dateAnn = annualFee.getText().toString();
     }
     private void updateLabelMed() {
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
         medicalCertificate.setText(sdf.format(myCalendar.getTime()));
+        dateMed = medicalCertificate.getText().toString();
+    }
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.save) {
+            String abb = abbonamento.getText().toString();
+            String ann = annualFee.getText().toString();
+            String med = medicalCertificate.getText().toString();
+            if (TextUtils.isEmpty(abb)&&TextUtils.isEmpty(ann) && TextUtils.isEmpty(med)) {
+                Toast.makeText(this, "You have to select both date abb and month to save it", Toast.LENGTH_LONG).show();
+            } else {
+                if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(ann) && !TextUtils.isEmpty(med)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                } else if (!TextUtils.isEmpty(abb)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                } else if (!TextUtils.isEmpty(ann)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                } else if (!TextUtils.isEmpty(med)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(med)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(ann)) {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                } else {
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                }
+            }
+        }else if (i == R.id.delete) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RealManageUser.this);
+            builder.setCancelable(true);
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure to delete this user?");
+            builder.setPositiveButton("Confirm",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            myRef.child("Users").child(shared.getUIDMan()).removeValue();
+                        }
+                    });
+            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
     }
 
 }
