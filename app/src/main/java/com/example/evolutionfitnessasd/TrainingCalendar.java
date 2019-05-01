@@ -63,12 +63,12 @@ public class TrainingCalendar extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(TrainingCalendar.this, "Calendar not present, please contact the personal trainer to get a new one", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TrainingCalendar.this, "Calendario non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_LONG).show();
                     Log.d("TRAINING CALENDAR", e.getLocalizedMessage());
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(TrainingCalendar.this, "Calendar not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TrainingCalendar.this, "Calendario non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_SHORT).show();
             Log.d("TRAINING CALENDAR", e.getLocalizedMessage());
         }
     }

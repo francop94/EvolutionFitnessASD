@@ -138,7 +138,7 @@ public class MainActivity extends BaseActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.main_layout), "Autenticazione Fallita.", Snackbar.LENGTH_SHORT).show();
 
                         }
 
@@ -181,7 +181,7 @@ public class MainActivity extends BaseActivity implements
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(MainActivity.this, "Incorrect email or password.",
+                                Toast.makeText(MainActivity.this, "Email o password non corretti.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -201,7 +201,7 @@ public class MainActivity extends BaseActivity implements
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(MainActivity.this, "Incorrect email or password.",
+                                Toast.makeText(MainActivity.this, "Email o password non corretti.",
                                         Toast.LENGTH_SHORT).show();
                             }
 
@@ -219,7 +219,7 @@ public class MainActivity extends BaseActivity implements
 
         String email = mEmailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailField.setError("Required.");
+            mEmailField.setError("Richiesta.");
             valid = false;
         } else {
             mEmailField.setError(null);
@@ -227,7 +227,7 @@ public class MainActivity extends BaseActivity implements
 
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordField.setError("Required.");
+            mPasswordField.setError("Richiesta.");
             valid = false;
         } else {
             mPasswordField.setError(null);

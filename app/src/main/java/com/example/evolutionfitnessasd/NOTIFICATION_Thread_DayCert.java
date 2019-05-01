@@ -66,8 +66,8 @@ public class NOTIFICATION_Thread_DayCert extends Application implements Runnable
             mDataBase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.child("Users").child(UID).hasChild("Date of Medical certificate")){
-                        certMed = dataSnapshot.child("Users").child(UID).child("Date of Medical certificate").getValue().toString();
+                    if(dataSnapshot.child("Utenti").child(UID).hasChild("Data Certificato Medico")){
+                        certMed = dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue().toString();
                     }
                 }  @Override
                 public void onCancelled(DatabaseError error) {

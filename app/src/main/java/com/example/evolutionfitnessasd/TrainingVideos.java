@@ -26,13 +26,13 @@ public class TrainingVideos extends AppCompatActivity {
         mMuscleType = (TextView) findViewById(R.id.muscleType);
             if (mBundle != null) {
                 mMuscleType.setText(mBundle.getString("Title"));
-                if(mBundle.getString("Title").equals("Pectoral")){ pectoral=true;}
-                if(mBundle.getString("Title").equals("Biceps")){ biceps=true;}
-                if(mBundle.getString("Title").equals("Triceps")){ triceps=true;}
-                if(mBundle.getString("Title").equals("Quadriceps")){ quadriceps=true;}
-                if(mBundle.getString("Title").equals("Abs")){ abs=true;}
-                if(mBundle.getString("Title").equals("Shoulders")){ shoulders=true;}
-                if(mBundle.getString("Title").equals("Dorsal")){ dorsal=true;}
+                if(mBundle.getString("Title").equals("Pettorali")){ pectoral=true;}
+                if(mBundle.getString("Title").equals("Bicipiti")){ biceps=true;}
+                if(mBundle.getString("Title").equals("Tricipiti")){ triceps=true;}
+                if(mBundle.getString("Title").equals("Quadricipiti")){ quadriceps=true;}
+                if(mBundle.getString("Title").equals("Addominali")){ abs=true;}
+                if(mBundle.getString("Title").equals("Spalle")){ shoulders=true;}
+                if(mBundle.getString("Title").equals("Dorsali")){ dorsal=true;}
             }
 
         setUpRecyclerView();

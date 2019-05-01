@@ -34,7 +34,7 @@ public class ResetPassword extends BaseActivity implements
 
         String email = memailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            memailField.setError("Required.");
+            memailField.setError("Richiesta.");
             valid = false;
         } else {
             memailField.setError(null);
@@ -50,7 +50,7 @@ public class ResetPassword extends BaseActivity implements
         }
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Inserisci la tua email con cui ti sei registrato", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -61,9 +61,9 @@ public class ResetPassword extends BaseActivity implements
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ResetPassword.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPassword.this, "Ti abbiamo inviato le istruzioni per fare il reset della tua password!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(ResetPassword.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPassword.this, "Errore nel mandare l'email per il reset!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

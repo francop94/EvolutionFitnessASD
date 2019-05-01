@@ -17,7 +17,7 @@
         android:layout_marginTop="27dp"
         android:fontFamily="@font/krona_one"
         android:gravity="center"
-        android:text="Schedule Upload"
+        android:text="Carica Scheda"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
@@ -41,7 +41,7 @@
             android:layout_marginTop="124dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Choose Image" />
+            android:text="Scegli Immagine" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnUpload"
@@ -50,7 +50,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Upload Schedule" />
+            android:text="Carica Scheda" />
 
     </LinearLayout>
 

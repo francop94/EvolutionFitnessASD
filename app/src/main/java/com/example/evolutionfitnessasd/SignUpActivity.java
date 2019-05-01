@@ -94,7 +94,7 @@ public class SignUpActivity extends BaseActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "This email address is already registered or the email format is invalid!",
+                            Toast.makeText(SignUpActivity.this, "Questa email è già registrata oppure il formato dell'email non è valido!",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -123,7 +123,7 @@ public class SignUpActivity extends BaseActivity implements
                         //findViewById(R.id.verifyEmail).setEnabled(true);
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this,
-                                    "Verification email sent to " + user.getEmail()+"\n"+"Check your spam folder if you don't receive the email!",
+                                    "Email di verifica mandata a " + user.getEmail()+"\n"+"Controlla la tua cartella di spam se non ricevi l'email!",
                                     Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
@@ -131,7 +131,7 @@ public class SignUpActivity extends BaseActivity implements
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(SignUpActivity.this,
-                                    "Failed to send verification email.",
+                                    "Errore nell'inviare l'email di verifica.",
                                     Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
@@ -167,7 +167,7 @@ public class SignUpActivity extends BaseActivity implements
 
         String email = memailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            memailField.setError("Required.");
+            memailField.setError("Richiesta.");
             valid = false;
         } else {
             memailField.setError(null);
@@ -175,7 +175,7 @@ public class SignUpActivity extends BaseActivity implements
 
         String username = musernameField.getText().toString();
         if (TextUtils.isEmpty(username)) {
-            musernameField.setError("Required.");
+            musernameField.setError("Richiesto.");
             valid = false;
         } else {
             shared.setNOME(username);
@@ -184,7 +184,7 @@ public class SignUpActivity extends BaseActivity implements
 
         String surname = msurnameField.getText().toString();
         if (TextUtils.isEmpty(surname)) {
-            msurnameField.setError("Required.");
+            msurnameField.setError("Richiesto.");
             valid = false;
         } else {
             shared.setCOGNOME(surname);
@@ -193,11 +193,11 @@ public class SignUpActivity extends BaseActivity implements
 
         String password = mpasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mpasswordField.setError("Required.");
+            mpasswordField.setError("Richiesta.");
             valid = false;
         }
         else if(password.length()<6){
-            mpasswordField.setError("Password must be at least 6 characters long!");
+            mpasswordField.setError("La password deve essere lunga almeno 6 caratteri!");
             valid = false;
         } else{
             mpasswordField.setError(null);

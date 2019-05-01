@@ -7,21 +7,21 @@
     android:background="@drawable/back"
     tools:context=".UploadCalendar">
 
+
     <TextView
         android:id="@+id/schedule_up"
-        android:layout_width="366dp"
-        android:layout_height="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="24dp"
         android:layout_marginTop="27dp"
         android:fontFamily="@font/krona_one"
         android:gravity="center"
-        android:text="Calendar Upload"
+        android:text="Carica Calendario"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
-
 
     <LinearLayout
         android:id="@+id/layout_button"
@@ -41,7 +41,7 @@
             android:layout_marginTop="124dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Choose Image" />
+            android:text="Scegli Immagine" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnUpload"
@@ -50,7 +50,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Upload Calendar" />
+            android:text="Carica Calendario" />
 
     </LinearLayout>
 

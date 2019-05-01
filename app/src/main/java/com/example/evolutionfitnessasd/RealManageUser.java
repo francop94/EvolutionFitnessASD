@@ -153,43 +153,43 @@ public class RealManageUser extends AppCompatActivity implements
             String ann = annualFee.getText().toString();
             String med = medicalCertificate.getText().toString();
             if (TextUtils.isEmpty(abb)&&TextUtils.isEmpty(ann) && TextUtils.isEmpty(med)) {
-                Toast.makeText(this, "You have to select both date abb and month to save it", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Devi selezionare sia la data dell'abbonamento sia il mese per salvare", Toast.LENGTH_LONG).show();
             } else {
                 if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(ann) && !TextUtils.isEmpty(med)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
                 } else if (!TextUtils.isEmpty(abb)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
                 } else if (!TextUtils.isEmpty(ann)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
                 } else if (!TextUtils.isEmpty(med)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
                 } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(med)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
                 } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(ann)) {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Abbonamento").setValue(dateAbb);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Months").setValue(month);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
                 } else {
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Annual fee").setValue(dateAnn);
-                    myRef.child("Users").child(shared.getUIDMan()).child("Date of Medical certificate").setValue(dateMed);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
+                    myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
                 }
             }
         }else if (i == R.id.delete) {
             AlertDialog.Builder builder = new AlertDialog.Builder(RealManageUser.this);
             builder.setCancelable(true);
-            builder.setTitle("Confirm");
-            builder.setMessage("Are you sure to delete this user?");
-            builder.setPositiveButton("Confirm",
+            builder.setTitle("Conferma");
+            builder.setMessage("Sei sicuro di eliminare questo utente?");
+            builder.setPositiveButton("Conferma",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            myRef.child("Users").child(shared.getUIDMan()).removeValue();
+                            myRef.child("Utenti").child(shared.getUIDMan()).removeValue();
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

@@ -33,10 +33,10 @@ public class shared {
     public static void setUID(String uid) {
         UID = uid;
     }
+
     public static String getUIDMan() {
         return UIDM;
     }
-
     public static void setUIDMan(String uid) {
         UIDM = uid;
     }

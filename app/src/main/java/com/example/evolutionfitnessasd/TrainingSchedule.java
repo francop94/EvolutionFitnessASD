@@ -53,10 +53,10 @@ public class TrainingSchedule extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                FROM = dataSnapshot.child("Users").child(uid).child("Email").getValue().toString();
-                NOME = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
-                if(dataSnapshot.child("Users").child(uid).hasChild("Surname")) {
-                    COGNOME = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
+                FROM = dataSnapshot.child("Utenti").child(uid).child("Email").getValue().toString();
+                NOME = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
+                if(dataSnapshot.child("Utenti").child(uid).hasChild("Cognome")) {
+                    COGNOME = dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue().toString();
                 }
                 final ImageView imageView = findViewById(R.id.imageView);
                 //imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -81,7 +81,7 @@ public class TrainingSchedule extends AppCompatActivity {
                             }
                         });
                     } catch (Exception e){
-                        Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TrainingSchedule.this, "Scheda non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_SHORT).show();
                         Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
                     }
                 }
@@ -103,12 +103,12 @@ public class TrainingSchedule extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TrainingSchedule.this, "Scheda non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_LONG).show();
                             Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
                         }
                     });;
                 }catch (Exception e){
-                        Toast.makeText(TrainingSchedule.this, "Schedule not present, please contact the personal trainer to get a new one", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TrainingSchedule.this, "Scheda non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_SHORT).show();
                         Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
                     }
                 }
@@ -185,14 +185,14 @@ public class TrainingSchedule extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_REFERRER, FROM);
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            startActivity(Intent.createChooser(emailIntent, "Invia email..."));
             Toast.makeText(TrainingSchedule.this,
-                    "Please select your email client to proceed sending an email to the administrators.", Toast.LENGTH_LONG).show();
-            finish();
+                    "Per favore seleziona un'app che gestisce le tue email per procedere nell'inviare un'email agli amministratori.", Toast.LENGTH_LONG).show();
+            //finish();
             Log.i("Finished sending email", "");
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(TrainingSchedule.this,
-                    "There is no email client installed.", Toast.LENGTH_LONG).show();
+                    "Non esiste un client per gestire email.", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -83,7 +83,7 @@ public class RealScheduleUpload extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Seleziona Immagine"), PICK_IMAGE_REQUEST);
 
     }
     @Override
@@ -108,7 +108,7 @@ public class RealScheduleUpload extends AppCompatActivity {
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("Caricando...");
             progressDialog.show();
 
             StorageReference ref = storageReference.child(shared.getUID()+"/"+ "schedule.jpg");
@@ -117,14 +117,14 @@ public class RealScheduleUpload extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(RealScheduleUpload.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RealScheduleUpload.this, "Caricata", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(RealScheduleUpload.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RealScheduleUpload.this, "Fallito "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -132,7 +132,7 @@ public class RealScheduleUpload extends AppCompatActivity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Caricata "+(int)progress+"%");
                         }
                     });
         }

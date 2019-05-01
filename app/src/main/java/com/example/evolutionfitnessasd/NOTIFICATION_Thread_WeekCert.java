@@ -67,8 +67,8 @@ public class NOTIFICATION_Thread_WeekCert extends Application implements Runnabl
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if(dataSnapshot.child("Users").child(UID).hasChild("Date of Medical certificate")){
-                        certMed = dataSnapshot.child("Users").child(UID).child("Date of Medical certificate").getValue().toString();
+                    if(dataSnapshot.child("Utenti").child(UID).hasChild("Data Certificato Medico")){
+                        certMed = dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue().toString();
                     }
                 }
 

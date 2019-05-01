@@ -66,11 +66,11 @@ public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
             mDataBase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("Users").child(UID).hasChild("Date of Abbonamento")) {
-                        abb = dataSnapshot.child("Users").child(UID).child("Date of Abbonamento").getValue().toString();
+                    if (dataSnapshot.child("Utenti").child(UID).hasChild("Data Abbonamento")) {
+                        abb = dataSnapshot.child("Utenti").child(UID).child("Data Abbonamento").getValue().toString();
                     }
-                    if(dataSnapshot.child("Users").child(UID).hasChild("Months")){
-                        month = dataSnapshot.child("Users").child(UID).child("Months").getValue().toString();
+                    if(dataSnapshot.child("Utenti").child(UID).hasChild("Mesi Abbonamento")){
+                        month = dataSnapshot.child("Utenti").child(UID).child("Mesi Abbonamento").getValue().toString();
                     }
                 }
 

@@ -85,7 +85,7 @@ public class UploadCalendar extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            startActivityForResult(Intent.createChooser(intent, "Seleziona Immagine"), PICK_IMAGE_REQUEST);
 
         }
         @Override
@@ -110,7 +110,7 @@ public class UploadCalendar extends AppCompatActivity {
             if(filePath != null)
             {
                 final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Uploading...");
+                progressDialog.setTitle("Caricando...");
                 progressDialog.show();
 
                 StorageReference ref = storageReference.child("calendar.jpg");
@@ -119,14 +119,14 @@ public class UploadCalendar extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 progressDialog.dismiss();
-                                Toast.makeText(com.example.evolutionfitnessasd.UploadCalendar.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(com.example.evolutionfitnessasd.UploadCalendar.this, "Caricato", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 progressDialog.dismiss();
-                                Toast.makeText(com.example.evolutionfitnessasd.UploadCalendar.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(com.example.evolutionfitnessasd.UploadCalendar.this, "Errore "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -134,7 +134,7 @@ public class UploadCalendar extends AppCompatActivity {
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                         .getTotalByteCount());
-                                progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                                progressDialog.setMessage("Caricato "+(int)progress+"%");
                             }
                         });
             }

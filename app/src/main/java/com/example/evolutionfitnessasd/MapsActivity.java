@@ -143,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(gym).title("Evolution Fitness ASD")
                 .snippet("Via: Km. 24.275, Via Flaminia, 00060 Riano(RM)"));
 
-        mMap.addMarker(new MarkerOptions().position(myPos).title("Your position").icon(BitmapDescriptorFactory
+        mMap.addMarker(new MarkerOptions().position(myPos).title("La tua posizione").icon(BitmapDescriptorFactory
                                 .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         float distance = distFrom(42.0940383, 12.489836143337936, lat,lng);
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
@@ -154,7 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraPosition cameraPosition = new CameraPosition.Builder().target(midPoint(42.0940383, 12.489836143337936, lat,lng)).zoom(12).bearing(angleBteweenCoordinate(42.0940383, 12.489836143337936, lat,lng)).build();
 
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        Toast.makeText(this, "Your distance to go to the gym is: "+distance+"m!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "La palestra è distante: "+distance+"m!", Toast.LENGTH_LONG).show();
     }
 
     // must declare methods //
@@ -264,7 +264,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return new LatLng((lat1+lat2)/2, (long1+long2)/2);
 
     }
-    public static float distFrom(double lat1, double lng1, double lat2, double lng2) {
+    public static int distFrom(double lat1, double lng1, double lat2, double lng2) {
         double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
@@ -272,7 +272,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
                         Math.sin(dLng/2) * Math.sin(dLng/2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        float dist = (float) (earthRadius * c);
+        int dist = (int) (earthRadius * c);
 
         return dist;
     }

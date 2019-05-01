@@ -22,19 +22,19 @@ public class MuscleGroups extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
         mMuscleList = new ArrayList<>();
-        mMuscleData = new MuscleData("Pectoral", R.drawable.pectoral);
+        mMuscleData = new MuscleData("Pettorali", R.drawable.pectoral);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Biceps", R.drawable.biceps);
+        mMuscleData = new MuscleData("Bicipiti", R.drawable.biceps);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Triceps", R.drawable.triceps);
+        mMuscleData = new MuscleData("Tricipiti", R.drawable.triceps);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Quadriceps", R.drawable.quadriceps);
+        mMuscleData = new MuscleData("Quadricipiti", R.drawable.quadriceps);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Shoulders", R.drawable.shoulders);
+        mMuscleData = new MuscleData("Spalle", R.drawable.shoulders);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Dorsal", R.drawable.dorsal);
+        mMuscleData = new MuscleData("Dorsali", R.drawable.dorsal);
         mMuscleList.add(mMuscleData);
-        mMuscleData = new MuscleData("Abs", R.drawable.abs);
+        mMuscleData = new MuscleData("Addominali", R.drawable.abs);
         mMuscleList.add(mMuscleData);
 
         MyAdapter myAdapter = new MyAdapter(MuscleGroups.this, mMuscleList);

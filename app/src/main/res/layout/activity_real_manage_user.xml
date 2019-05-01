@@ -20,11 +20,11 @@ android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/schedule_up"
-        android:layout_width="366dp"
-        android:layout_height="58dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:fontFamily="@font/krona_one"
         android:gravity="center"
-        android:text="Set payments"
+        android:text="Impostare i pagamenti"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
@@ -40,7 +40,7 @@ android:fitsSystemWindows="true">
             android:id="@+id/abbonamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of subscription/for how many months"
+            android:hint="Data abbonamento/per quanti mesi"
             android:clickable="true"
             android:focusable="false"
             android:inputType="none" />
@@ -67,7 +67,7 @@ android:fitsSystemWindows="true">
             android:id="@+id/annualFee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of annual fee"
+            android:hint="Data quota annuale"
             android:clickable="true"
             android:focusable="false"
             android:inputType="none" />
@@ -84,7 +84,7 @@ android:fitsSystemWindows="true">
             android:id="@+id/medicalCertificate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of medical certificate"
+            android:hint="Data certificato medico"
             android:clickable="true"
             android:focusable="false"
             android:inputType="none" />
@@ -98,7 +98,7 @@ android:fitsSystemWindows="true">
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
         android:padding="12dp"
-        android:text="Save" />
+        android:text="Salva" />
 
     <!-- Delete Button -->
     <android.support.v7.widget.AppCompatButton
@@ -109,7 +109,7 @@ android:fitsSystemWindows="true">
         android:layout_marginBottom="24dp"
         android:padding="12dp"
         android:background="@android:color/holo_red_dark"
-        android:text="Delete user" />
+        android:text="Cancella Utente" />
 
 </LinearLayout>
 </ScrollView>

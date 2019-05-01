@@ -124,12 +124,12 @@ public class Navigation extends AppCompatActivity
             String email = mAuth.getCurrentUser().getEmail();
             String name = shared.getNOME();
             String surname = shared.getCOGNOME();
-            myRef.child("Users").child(uid).child("Email").setValue(email);
+            myRef.child("Utenti").child(uid).child("Email").setValue(email);
             if(name!=null && surname!=null) {
-                myRef.child("Users").child(uid).child("Name").setValue(name);
-                myRef.child("Users").child(uid).child("Surname").setValue(surname);
+                myRef.child("Utenti").child(uid).child("Nome").setValue(name);
+                myRef.child("Utenti").child(uid).child("Cognome").setValue(surname);
             } else if(account!=null){
-                myRef.child("Users").child(uid).child("Name").setValue(account.getDisplayName());
+                myRef.child("Utenti").child(uid).child("Nome").setValue(account.getDisplayName());
             }
 
             textname = headerView.findViewById(R.id.textName);
@@ -140,18 +140,18 @@ public class Navigation extends AppCompatActivity
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         String name, surname;
-                        if(dataSnapshot.child("Users").child(uid).hasChild("Surname")) {
-                            name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
-                            surname = dataSnapshot.child("Users").child(uid).child("Surname").getValue().toString();
+                        if(dataSnapshot.child("Utenti").child(uid).hasChild("Cognome")) {
+                            name = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
+                            surname = dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue().toString();
 
                             if (name != null && surname != null) {
-                                textname.setText("Welcome, " + name + " " + surname);
+                                textname.setText("Ciao, " + name + " " + surname);
                             }
                         }else{
-                            if(dataSnapshot.child("Users").child(uid).hasChild("Name")) {
-                                name = dataSnapshot.child("Users").child(uid).child("Name").getValue().toString();
+                            if(dataSnapshot.child("Utenti").child(uid).hasChild("Nome")) {
+                                name = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
                                 if (name != null) {
-                                    textname.setText("Welcome, " + name);
+                                    textname.setText("Ciao, " + name);
                                 }
                             }
                         }
@@ -170,7 +170,7 @@ public class Navigation extends AppCompatActivity
             }else if(mAuth.getCurrentUser()!=null && !mAuth.getCurrentUser().isEmailVerified()){
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_navigation);
-                Toast.makeText(Navigation.this, "To enter the app you have to verify your email address first!",
+                Toast.makeText(Navigation.this, "Per entrare nell'app devi prima verificare la tua email!",
                     Toast.LENGTH_LONG).show();
                 finish();
                 Intent login = new Intent(Navigation.this,MainActivity.class);
@@ -207,8 +207,8 @@ public class Navigation extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-        }
+        /*if (id == R.id.action_settings) {
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

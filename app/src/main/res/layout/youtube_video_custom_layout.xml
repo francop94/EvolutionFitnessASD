@@ -32,7 +32,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/video_thumbnail_image_view"
             android:layout_toRightOf="@+id/video_thumbnail_image_view"
-            android:text="Title of Video"
+            android:text="Titolo del Video"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 

@@ -84,7 +84,7 @@ public class ShareImageAdmin extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Seleziona Immagine"), PICK_IMAGE_REQUEST);
 
     }
     @Override
@@ -109,7 +109,7 @@ public class ShareImageAdmin extends AppCompatActivity {
         sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         sharingIntent.setType("image/*");
         sharingIntent.putExtra(Intent.EXTRA_STREAM, filePath);
-        startActivity(Intent.createChooser(sharingIntent, "Share Image Using"));
+        startActivity(Intent.createChooser(sharingIntent, "Condividi Immagine"));
     }
 
 }

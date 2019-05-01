@@ -67,8 +67,8 @@ public class NOTIFICATION_Thread_WeekAnn extends Application implements Runnable
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if (dataSnapshot.child("Users").child(UID).hasChild("Date of Annual fee")) {
-                        ann = dataSnapshot.child("Users").child(UID).child("Date of Annual fee").getValue().toString();
+                    if (dataSnapshot.child("Utenti").child(UID).hasChild("Data Quota Annuale")) {
+                        ann = dataSnapshot.child("Utenti").child(UID).child("Data Quota Annuale").getValue().toString();
                     }
                 }
 

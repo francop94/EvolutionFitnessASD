@@ -43,7 +43,7 @@ public class ManageUser extends AppCompatActivity{
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                uid = dataSnapshot.child("Users").getChildren();
+                uid = dataSnapshot.child("Utenti").getChildren();
                 userAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, userList);
                 list.setAdapter(userAdapter);
                 list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -63,17 +63,17 @@ public class ManageUser extends AppCompatActivity{
                     if(snap.getKey()!=null) {
                         UID.add(snap.getKey());
                     }
-                    if (snap.hasChild("Surname")) {
+                    if (snap.hasChild("Cognome")) {
                         try {
-                            names = snap.child("Name").getValue().toString();
-                            surnames = snap.child("Surname").getValue().toString();
+                            names = snap.child("Nome").getValue().toString();
+                            surnames = snap.child("Cognome").getValue().toString();
                             userList.add(names + " " + surnames);
                         } catch(NullPointerException e){
                             Log.d("MANAGE USER: ", e.getLocalizedMessage());
                         }
                     } else {
                         try {
-                            String names = snap.child("Name").getValue().toString();
+                            String names = snap.child("Nome").getValue().toString();
                             userList.add(names);
                         } catch(NullPointerException e){
                             Log.d("MANAGE USER: ", e.getLocalizedMessage());

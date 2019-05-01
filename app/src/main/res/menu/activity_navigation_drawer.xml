@@ -7,19 +7,19 @@
     <item
         android:id="@+id/nav_camera"
         android:icon="@drawable/ic_menu_camera"
-        android:title="Training schedule" />
+        android:title="Scheda di allenamento" />
     <item
         android:id="@+id/nav_gallery"
         android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="Training calendar" />
+        android:title="Calendario corsi" />
     <item
         android:id="@+id/nav_slideshow"
         android:icon="@drawable/ic_menu_slideshow"
-        android:title="Training videos" />
+        android:title="Video di allenamento" />
     <item
         android:id="@+id/maps"
         android:icon="@android:drawable/ic_dialog_map"
-        android:title="Maps" />
+        android:title="Mappa" />
   </group>
 
   <item android:title="Communicate">
@@ -27,7 +27,7 @@
       <item
           android:id="@+id/nav_share"
           android:icon="@drawable/ic_menu_share"
-          android:title="Share" />
+          android:title="Condividi" />
       <item
           android:id="@+id/contacts"
           android:icon="@android:drawable/ic_menu_info_details"
@@ -35,7 +35,7 @@
       <item
           android:id="@+id/disconnect"
           android:icon="@android:drawable/ic_lock_power_off"
-          android:title="Disconnect" />
+          android:title="Esci" />
     </menu>
   </item>
 

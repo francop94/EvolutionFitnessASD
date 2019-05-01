@@ -40,7 +40,7 @@ public class UploadSchedule extends AppCompatActivity{
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                uid = dataSnapshot.child("Users").getChildren();
+                uid = dataSnapshot.child("Utenti").getChildren();
                 userAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, userList);
                 list.setAdapter(userAdapter);
                 list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -55,12 +55,12 @@ public class UploadSchedule extends AppCompatActivity{
                 userAdapter.clear();
                 while(uid.iterator().hasNext()) {
                     DataSnapshot snap=uid.iterator().next();
-                    if (snap.hasChild("Surname")) {
-                        names = snap.child("Name").getValue().toString();
-                        surnames = snap.child("Surname").getValue().toString();
+                    if (snap.hasChild("Cognome")) {
+                        names = snap.child("Nome").getValue().toString();
+                        surnames = snap.child("Cognome").getValue().toString();
                         userList.add(names+" "+surnames);
                     } else{
-                        String names=snap.child("Name").getValue().toString();
+                        String names=snap.child("Nome").getValue().toString();
                         userList.add(names);
                     }
                 }

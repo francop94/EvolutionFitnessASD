@@ -7,15 +7,15 @@
     <item
         android:id="@+id/nav_camera"
         android:icon="@drawable/ic_menu_camera"
-        android:title="Upload schedule" />
+        android:title="Carica scheda" />
     <item
         android:id="@+id/nav_slideshow"
         android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="Upload Calendar" />
+        android:title="Carica Calendario" />
     <item
         android:id="@+id/manageUser"
         android:icon="@android:drawable/ic_menu_manage"
-        android:title="Manage Users" />
+        android:title="Gestisci Utenti" />
   </group>
 
   <item android:title="Communicate">
@@ -23,11 +23,11 @@
       <item
           android:id="@+id/nav_share"
           android:icon="@drawable/ic_menu_share"
-          android:title="Share" />
+          android:title="Condividi" />
       <item
           android:id="@+id/disconnect"
           android:icon="@android:drawable/ic_lock_power_off"
-          android:title="Disconnect" />
+          android:title="Esci" />
     </menu>
   </item>
 
