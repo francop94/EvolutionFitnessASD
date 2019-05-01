@@ -1,8 +1,13 @@
 package com.example.evolutionfitnessasd;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -39,6 +44,12 @@ public class Navigation extends AppCompatActivity
     private static final String TAG = "Navigation";
     private TextView textname;
     private String uid;
+    private NotificationChannel channel;
+    private NotificationManager mNotificationManager ;
+    private NotificationCompat.Builder mBuilder;
+    private Intent intentNotification;
+    private PendingIntent pi;
+    private Thread SCADENZA_WEEK_ABB, SCADENZA_WEEK_ANN, SCADENZA_WEEK_CERT, SCADENZA_DAY_ABB, SCADENZA_DAY_ANN, SCADENZA_DAY_CERT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +81,44 @@ public class Navigation extends AppCompatActivity
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
             View headerView = navigationView.getHeaderView(0);
+
+            //THREADS
+            createChannelWeekAbb("Channel0","Channel_WEEK_ABB");
+            createNotification();
+            System.out.println("CHANNEL 0 CREATO-------------------------------------");
+            SCADENZA_WEEK_ABB= new Thread(new NOTIFICATION_Thread_WeekAbb(channel,mNotificationManager,mBuilder,pi));
+
+            createChannelWeekAnn("Channel1","Channel_WEEK_ANN");
+            createNotification();
+            System.out.println("CHANNEL 1 CREATO-------------------------------------");
+            SCADENZA_WEEK_ANN= new Thread(new NOTIFICATION_Thread_WeekAnn(channel,mNotificationManager,mBuilder,pi));
+
+            createChannelWeekCert("Channel2","Channel_WEEK_CERT");
+            createNotification();
+            System.out.println("CHANNEL 2 CREATO-------------------------------------");
+            SCADENZA_WEEK_CERT= new Thread(new NOTIFICATION_Thread_WeekCert(channel,mNotificationManager,mBuilder,pi));
+
+            createChannelDayAbb("Channel3","Channel_DAY_ABB");
+            createNotification();
+            System.out.println("CHANNEL 3 CREATO-------------------------------------");
+            SCADENZA_DAY_ABB= new Thread(new NOTIFICATION_Thread_DayAbb(channel,mNotificationManager,mBuilder,pi));
+
+            createChannelDayAnn("Channel4","Channel_DAY_ANN");
+            createNotification();
+            System.out.println("CHANNEL 4 CREATO-------------------------------------");
+            SCADENZA_DAY_ANN= new Thread(new NOTIFICATION_Thread_DayAnn(channel,mNotificationManager,mBuilder,pi));
+
+            createChannelDayCert("Channel5","Channel_DAY_CERT");
+            createNotification();
+            System.out.println("CHANNEL 5 CREATO-------------------------------------");
+            SCADENZA_DAY_CERT= new Thread(new NOTIFICATION_Thread_DayCert(channel,mNotificationManager,mBuilder,pi));
+
+            SCADENZA_WEEK_ABB.start();
+            SCADENZA_WEEK_ANN.start();
+            SCADENZA_WEEK_CERT.start();
+            SCADENZA_DAY_ABB.start();
+            SCADENZA_DAY_ANN.start();
+            SCADENZA_DAY_CERT.start();
 
             uid = mAuth.getUid();
             String email = mAuth.getCurrentUser().getEmail();
@@ -218,6 +267,61 @@ public class Navigation extends AppCompatActivity
                     });
     }
     super.onBackPressed();
+    }
+    public void createChannelWeekAbb(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("0", "Scadenza abbonamento tra una settimana", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("Canale per scadenza abbonamento tra una settimana");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+    public void createChannelWeekAnn(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("1", "Scadenza quota annuale tra una settimana", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("Canale per scadenza quota annuale tra una settimana");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+    public void createChannelWeekCert(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("2", "Scadenza certificato medico tra una settimana", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("Canale per scadenza certificato medico tra una settimana");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+    public void createChannelDayAbb(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("3", "Scadenza abbonamento tra un giorno", NotificationManager.IMPORTANCE_HIGH);
+        channel.setDescription("Canale per scadenza abbonamento tra un giorno");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+    public void createChannelDayAnn(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("4", "Scadenza quota annuale tra un giorno", NotificationManager.IMPORTANCE_HIGH);
+        channel.setDescription("Canale per scadenza quota annuale tra un giorno");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+    public void createChannelDayCert(String title, String content) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        channel = new NotificationChannel("5", "Scadenza certficato medico tra un giorno", NotificationManager.IMPORTANCE_HIGH);
+        channel.setDescription("Canale per scadenza certificato medico tra un giorno");
+        mNotificationManager.createNotificationChannel(channel);
+        System.out.println("Canale creato");
+    }
+
+
+    public void createNotification(){
+
+
+        System.out.println("ENTRATO NEL BUILDER");
+        mBuilder = new NotificationCompat.Builder(this,channel.getId() );
+        intentNotification = new Intent(getApplicationContext(), Navigation.class);
+        pi = PendingIntent.getActivity(this, 0, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
     }
 
 }

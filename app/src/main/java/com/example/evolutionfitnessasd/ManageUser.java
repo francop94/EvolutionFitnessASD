@@ -29,7 +29,6 @@ public class ManageUser extends AppCompatActivity{
     private ArrayAdapter<String> userAdapter;
     private ListView list;
     private String chosenName;
-    private int index;
     private ArrayList<String> UID;
     @Override
     protected void onCreate(Bundle savedInstanceState){
