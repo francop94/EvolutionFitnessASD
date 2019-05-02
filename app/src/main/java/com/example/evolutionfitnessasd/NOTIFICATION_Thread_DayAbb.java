@@ -132,6 +132,7 @@ public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
                         createNotification("Abbonamento in scadenza", "Manca un giorno alla scadenza dell'abbonamento", R.drawable.logo);
                         mNotificationManager.notify(3, mBuilder.build());
                         sendedAbb=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Giornaliera Abbonamento").setValue("true");
                     }
                     stop();
 

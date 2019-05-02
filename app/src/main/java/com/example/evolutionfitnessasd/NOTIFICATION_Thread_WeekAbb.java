@@ -132,6 +132,7 @@ public class NOTIFICATION_Thread_WeekAbb extends Application implements Runnable
                         createNotification("Abbonamento in scadenza", "Manca una settimana alla scadenza dell'abbonamento", R.drawable.logo);
                         mNotificationManager.notify(0, mBuilder.build());
                         sendedAbb=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Settimanale Abbonamento").setValue("true");
                 }
                 stop();
 

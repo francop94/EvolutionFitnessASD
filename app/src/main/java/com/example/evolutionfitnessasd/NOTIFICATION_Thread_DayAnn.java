@@ -100,6 +100,7 @@ public class NOTIFICATION_Thread_DayAnn extends Application implements Runnable{
                         createNotification("Quota annuale in scadenza", "Manca un giorno alla scadenza della quota annuale", R.drawable.logo);
                         mNotificationManager.notify(4, mBuilder.build());
                         sendedAnn=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Giornaliera Quota Annuale").setValue("true");
                     }
                     stop();
 

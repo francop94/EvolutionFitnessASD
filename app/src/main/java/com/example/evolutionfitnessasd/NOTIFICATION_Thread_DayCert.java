@@ -98,6 +98,7 @@ public class NOTIFICATION_Thread_DayCert extends Application implements Runnable
                         createNotification("Certificato medico in scadenza", "Manca un giorno alla scadenza del certificato medico", R.drawable.logo);
                         mNotificationManager.notify(5, mBuilder.build());
                         sendedCert=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Giornaliera Certificato Medico").setValue("true");
                     }
                     stop();
 

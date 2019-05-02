@@ -83,42 +83,139 @@ public class Navigation extends AppCompatActivity
             View headerView = navigationView.getHeaderView(0);
 
             //THREADS
-            createChannelWeekAbb("Channel0","Channel_WEEK_ABB");
-            createNotification();
-            System.out.println("CHANNEL 0 CREATO-------------------------------------");
-            SCADENZA_WEEK_ABB= new Thread(new NOTIFICATION_Thread_WeekAbb(channel,mNotificationManager,mBuilder,pi));
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Settimanale Abbonamento")) {
+                        try{
+                            createChannelWeekAbb("Channel0","Channel_WEEK_ABB");
+                            createNotification();
+                            System.out.println("CHANNEL 0 CREATO-------------------------------------");
+                            SCADENZA_WEEK_ABB= new Thread(new NOTIFICATION_Thread_WeekAbb(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_WEEK_ABB.start();
+                        } catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                        }
+                    }
+                    //SCADENZA_WEEK_ABB.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
 
-            createChannelWeekAnn("Channel1","Channel_WEEK_ANN");
-            createNotification();
-            System.out.println("CHANNEL 1 CREATO-------------------------------------");
-            SCADENZA_WEEK_ANN= new Thread(new NOTIFICATION_Thread_WeekAnn(channel,mNotificationManager,mBuilder,pi));
-
-            createChannelWeekCert("Channel2","Channel_WEEK_CERT");
-            createNotification();
-            System.out.println("CHANNEL 2 CREATO-------------------------------------");
-            SCADENZA_WEEK_CERT= new Thread(new NOTIFICATION_Thread_WeekCert(channel,mNotificationManager,mBuilder,pi));
-
-            createChannelDayAbb("Channel3","Channel_DAY_ABB");
-            createNotification();
-            System.out.println("CHANNEL 3 CREATO-------------------------------------");
-            SCADENZA_DAY_ABB= new Thread(new NOTIFICATION_Thread_DayAbb(channel,mNotificationManager,mBuilder,pi));
-
-            createChannelDayAnn("Channel4","Channel_DAY_ANN");
-            createNotification();
-            System.out.println("CHANNEL 4 CREATO-------------------------------------");
-            SCADENZA_DAY_ANN= new Thread(new NOTIFICATION_Thread_DayAnn(channel,mNotificationManager,mBuilder,pi));
-
-            createChannelDayCert("Channel5","Channel_DAY_CERT");
-            createNotification();
-            System.out.println("CHANNEL 5 CREATO-------------------------------------");
-            SCADENZA_DAY_CERT= new Thread(new NOTIFICATION_Thread_DayCert(channel,mNotificationManager,mBuilder,pi));
-
-            SCADENZA_WEEK_ABB.start();
-            SCADENZA_WEEK_ANN.start();
-            SCADENZA_WEEK_CERT.start();
-            SCADENZA_DAY_ABB.start();
-            SCADENZA_DAY_ANN.start();
-            SCADENZA_DAY_CERT.start();
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Settimanale Quota Annuale")) {
+                        try{
+                            createChannelWeekAnn("Channel1","Channel_WEEK_ANN");
+                            createNotification();
+                            System.out.println("CHANNEL 1 CREATO-------------------------------------");
+                            SCADENZA_WEEK_ANN= new Thread(new NOTIFICATION_Thread_WeekAnn(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_WEEK_ANN.start();
+                        } catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                    }
+                    }
+                    //SCADENZA_WEEK_ANN.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Settimanale Certificato Medico")) {
+                        try{
+                            createChannelWeekCert("Channel2","Channel_WEEK_CERT");
+                            createNotification();
+                            System.out.println("CHANNEL 2 CREATO-------------------------------------");
+                            SCADENZA_WEEK_CERT= new Thread(new NOTIFICATION_Thread_WeekCert(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_WEEK_CERT.start();
+                        }catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                        }
+                    }
+                    //SCADENZA_WEEK_CERT.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Giornaliera Abbonamento")) {
+                        try{
+                            createChannelDayAbb("Channel3","Channel_DAY_ABB");
+                            createNotification();
+                            System.out.println("CHANNEL 3 CREATO-------------------------------------");
+                            SCADENZA_DAY_ABB= new Thread(new NOTIFICATION_Thread_DayAbb(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_DAY_ABB.start();
+                        } catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                        }
+                    }
+                    //SCADENZA_DAY_ABB.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Giornaliera Quota Annuale")) {
+                        try{
+                            createChannelDayAnn("Channel4","Channel_DAY_ANN");
+                            createNotification();
+                            System.out.println("CHANNEL 4 CREATO-------------------------------------");
+                            SCADENZA_DAY_ANN= new Thread(new NOTIFICATION_Thread_DayAnn(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_DAY_ANN.start();
+                        }catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                        }
+                    }
+                    //SCADENZA_DAY_ANN.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.child("Utenti").child(uid).hasChild("Scadenza Giornaliera Certificato Medico")) {
+                        try{
+                            createChannelDayCert("Channel5","Channel_DAY_CERT");
+                            createNotification();
+                            System.out.println("CHANNEL 5 CREATO-------------------------------------");
+                            SCADENZA_DAY_CERT= new Thread(new NOTIFICATION_Thread_DayCert(channel,mNotificationManager,mBuilder,pi));
+                            SCADENZA_DAY_CERT.start();
+                        }catch(IllegalThreadStateException e){
+                            Log.d("THREAD EXCEPTION", "ILLEGAL THREAD EXCEPTION");
+                        }
+                    }
+                    //SCADENZA_DAY_CERT.interrupt();
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
 
             uid = mAuth.getUid();
             String email = mAuth.getCurrentUser().getEmail();

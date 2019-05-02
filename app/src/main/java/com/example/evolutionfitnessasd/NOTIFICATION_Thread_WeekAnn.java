@@ -103,6 +103,7 @@ public class NOTIFICATION_Thread_WeekAnn extends Application implements Runnable
                         createNotification("Quota annuale in scadenza", "Manca una settimana alla scadenza della quota annuale", R.drawable.logo);
                         mNotificationManager.notify(1, mBuilder.build());
                         sendedAnn=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Settimanale Quota Annuale").setValue("true");
                     }
                     stop();
 

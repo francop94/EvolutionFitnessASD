@@ -104,6 +104,7 @@ public class NOTIFICATION_Thread_WeekCert extends Application implements Runnabl
                         createNotification("Certificato medico in scadenza", "Manca una settimana alla scadenza del certificato medico", R.drawable.logo);
                         mNotificationManager.notify(2, mBuilder.build());
                         sendedCert=true;
+                        mDataBase.child("Utenti").child(UID).child("Scadenza Settimanale Certificato Medico").setValue("true");
                     }
                     stop();
 

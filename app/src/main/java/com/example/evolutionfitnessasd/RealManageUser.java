@@ -160,24 +160,31 @@ public class RealManageUser extends AppCompatActivity implements
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isEmpty(abb)) {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isEmpty(ann)) {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isEmpty(med)) {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(med)) {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isEmpty(abb) && !TextUtils.isEmpty(ann)) {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Abbonamento").setValue(dateAbb);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Mesi Abbonamento").setValue(month);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 } else {
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Quota Annuale").setValue(dateAnn);
                     myRef.child("Utenti").child(shared.getUIDMan()).child("Data Certificato Medico").setValue(dateMed);
+                    Toast.makeText(RealManageUser.this, "Salvato", Toast.LENGTH_SHORT).show();
                 }
             }
         }else if (i == R.id.delete) {
@@ -190,6 +197,7 @@ public class RealManageUser extends AppCompatActivity implements
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             myRef.child("Utenti").child(shared.getUIDMan()).removeValue();
+                            Toast.makeText(RealManageUser.this, "Utente eliminato", Toast.LENGTH_SHORT).show();
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
