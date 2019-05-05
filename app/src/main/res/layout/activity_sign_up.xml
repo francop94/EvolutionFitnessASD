@@ -20,8 +20,8 @@ android:fitsSystemWindows="true">
         android:paddingBottom="220dp">
 
         <ImageView
-            android:layout_width="219dp"
-            android:layout_height="117dp"
+            android:layout_width="295dp"
+            android:layout_height="205dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
             android:src="@drawable/login_logo" />
@@ -37,6 +37,7 @@ android:fitsSystemWindows="true">
                 android:id="@+id/usernameF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/EditTextColorCustom"
                 android:hint="Nome"
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
@@ -52,6 +53,7 @@ android:fitsSystemWindows="true">
                 android:id="@+id/surnameF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/EditTextColorCustom"
                 android:hint="Cognome"
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
@@ -67,6 +69,7 @@ android:fitsSystemWindows="true">
                 android:id="@+id/emailF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/EditTextColorCustom"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
@@ -84,6 +87,7 @@ android:fitsSystemWindows="true">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:theme="@style/EditTextColorCustom"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 

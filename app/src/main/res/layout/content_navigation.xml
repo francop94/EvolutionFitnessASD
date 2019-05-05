@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -11,7 +18,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="306dp"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="24dp"
@@ -19,12 +26,10 @@
 
     <TextView
         android:id="@+id/appDescription2"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="334dp"
         android:fontFamily="@font/bevan"
         android:text="Benvenuto in Evolution Fitness ASD!"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -33,12 +38,8 @@
 
     <TextView
         android:id="@+id/appDescription3"
-        android:layout_width="385dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="412dp"
         android:fontFamily="@font/bevan"
         android:text="Per favore scegli dal menù a tendina un'azione per usare l'app"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -47,12 +48,9 @@
 
     <TextView
         android:id="@+id/TelDescription"
-        android:layout_width="199dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="613dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/coming_soon"
         android:text="Telefono: 06 9034357"
         android:textColor="@android:color/holo_red_dark"
@@ -61,12 +59,8 @@
 
     <TextView
         android:id="@+id/SiteDescription"
-        android:layout_width="394dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="644dp"
         android:fontFamily="@font/coming_soon"
         android:text="Sito: www.facebook.com/evolutionfitnessasd"
         android:textColor="@android:color/holo_red_dark"
@@ -74,4 +68,5 @@
         android:textStyle="bold|italic" />
 
 
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>
