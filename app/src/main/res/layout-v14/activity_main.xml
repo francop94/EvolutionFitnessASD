@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/back"
         android:orientation="vertical"
         android:paddingLeft="24dp"
@@ -37,10 +37,13 @@
                 android:id="@+id/fieldEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_username"
                 android:theme="@style/EditTextColorCustom"
+                android:autofillHints="true"
+                android:drawableLeft="@drawable/ic_action_username"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textColorLink="@color/common_google_signin_btn_text_dark_focused"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -82,7 +85,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="Registrati Ora"
-            android:textSize="16dip" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/forgotPassword"

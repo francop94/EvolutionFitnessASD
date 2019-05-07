@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 public class UploadSchedule extends AppCompatActivity{
     private DatabaseReference myRef;
@@ -59,17 +61,20 @@ public class UploadSchedule extends AppCompatActivity{
                 });
                 userAdapter.clear();
                 while(uid.iterator().hasNext()) {
-                    DataSnapshot snap=uid.iterator().next();
+                    DataSnapshot snap = uid.iterator().next();
                     if (snap.hasChild("Cognome")) {
-                        names = snap.child("Nome").getValue().toString();
-                        surnames = snap.child("Cognome").getValue().toString();
-                        userList.add(names+" "+surnames);
-                    } else{
-                        String names=snap.child("Nome").getValue().toString();
-                        userList.add(names);
+                        names = Objects.requireNonNull(snap.child("Nome").getValue()).toString();
+                        surnames = Objects.requireNonNull(snap.child("Cognome").getValue()).toString();
+                        userList.add(names + " " + surnames);
+                        Collections.sort(userList);
+                    } else {
+                        if (snap.hasChild("Nome")) {
+                            String names = Objects.requireNonNull(snap.child("Nome").getValue()).toString();
+                            userList.add(names);
+                            Collections.sort(userList);
+                        }
                     }
                 }
-
             }
             @Override
             public void onCancelled(DatabaseError error) {

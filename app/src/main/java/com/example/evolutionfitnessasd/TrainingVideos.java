@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Vector;
 
 public class TrainingVideos extends AppCompatActivity {
@@ -26,13 +27,13 @@ public class TrainingVideos extends AppCompatActivity {
         mMuscleType = (TextView) findViewById(R.id.muscleType);
             if (mBundle != null) {
                 mMuscleType.setText(mBundle.getString("Title"));
-                if(mBundle.getString("Title").equals("Pettorali")){ pectoral=true;}
-                if(mBundle.getString("Title").equals("Bicipiti")){ biceps=true;}
-                if(mBundle.getString("Title").equals("Tricipiti")){ triceps=true;}
-                if(mBundle.getString("Title").equals("Quadricipiti")){ quadriceps=true;}
-                if(mBundle.getString("Title").equals("Addominali")){ abs=true;}
-                if(mBundle.getString("Title").equals("Spalle")){ shoulders=true;}
-                if(mBundle.getString("Title").equals("Dorsali")){ dorsal=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Pettorali")){ pectoral=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Bicipiti")){ biceps=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Tricipiti")){ triceps=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Quadricipiti")){ quadriceps=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Addominali")){ abs=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Spalle")){ shoulders=true;}
+                if(Objects.requireNonNull(mBundle.getString("Title")).equals("Dorsali")){ dorsal=true;}
             }
 
         setUpRecyclerView();

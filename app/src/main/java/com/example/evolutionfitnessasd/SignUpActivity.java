@@ -114,6 +114,7 @@ public class SignUpActivity extends BaseActivity implements
         // Send verification email
         // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         user.sendEmailVerification()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override

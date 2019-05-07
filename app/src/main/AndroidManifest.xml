@@ -32,6 +32,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RealManageUser" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_DayAbb" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_DayAnn" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_DayCert" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_WeekAbb" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_WeekAnn" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NOTIFICATION_Thread_WeekCert" android:screenOrientation="portrait"></activity>
         <activity android:name=".ManageUser" android:screenOrientation="portrait"/>
         <activity android:name=".TrainingCalendar" />
         <activity android:name=".UploadCalendar" android:screenOrientation="portrait"/>

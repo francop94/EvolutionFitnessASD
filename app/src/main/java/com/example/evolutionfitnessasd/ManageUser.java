@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 public class ManageUser extends AppCompatActivity{
     private DatabaseReference myRef;
@@ -70,16 +72,19 @@ public class ManageUser extends AppCompatActivity{
                     }
                     if (snap.hasChild("Cognome")) {
                         try {
-                            names = snap.child("Nome").getValue().toString();
-                            surnames = snap.child("Cognome").getValue().toString();
+                            names = Objects.requireNonNull(snap.child("Nome").getValue()).toString();
+                            surnames = Objects.requireNonNull(snap.child("Cognome").getValue()).toString();
                             userList.add(names + " " + surnames);
+                            Collections.sort(userList);
                         } catch(NullPointerException e){
                             Log.d("MANAGE USER: ", e.getLocalizedMessage());
                         }
                     } else {
+                        if(snap.hasChild("Nome"))
                         try {
-                            String names = snap.child("Nome").getValue().toString();
+                            String names = Objects.requireNonNull(snap.child("Nome").getValue()).toString();
                             userList.add(names);
+                            Collections.sort(userList);
                         } catch(NullPointerException e){
                             Log.d("MANAGE USER: ", e.getLocalizedMessage());
                         }
@@ -104,7 +109,9 @@ public class ManageUser extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                (ManageUser.this).userAdapter.getFilter().filter(charSequence);
+                if(userAdapter!=null) {
+                    (ManageUser.this).userAdapter.getFilter().filter(charSequence);
+                }
             }
 
             @Override

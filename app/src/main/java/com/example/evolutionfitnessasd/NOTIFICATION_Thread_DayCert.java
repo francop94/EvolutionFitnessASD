@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class NOTIFICATION_Thread_DayCert extends Application implements Runnable{
         private NotificationChannel channel;
@@ -55,6 +56,7 @@ public class NOTIFICATION_Thread_DayCert extends Application implements Runnable
             mBuilder = build;
             pendingIntent = pending;
             user = FirebaseAuth.getInstance().getCurrentUser();
+            assert user != null;
             UID = user.getUid();
             myCalendar= Calendar.getInstance();
             certC= Calendar.getInstance();
@@ -67,7 +69,7 @@ public class NOTIFICATION_Thread_DayCert extends Application implements Runnable
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child("Utenti").child(UID).hasChild("Data Certificato Medico")){
-                        certMed = dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue().toString();
+                        certMed = Objects.requireNonNull(dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue()).toString();
                     }
                 }  @Override
                 public void onCancelled(DatabaseError error) {
@@ -121,7 +123,7 @@ public class NOTIFICATION_Thread_DayCert extends Application implements Runnable
             if(certC!=null){
                 certC.add(certC.DAY_OF_MONTH,-1);
             }
-            currentCert = sdf.format(certC.getTime());
+            currentCert = sdf.format(Objects.requireNonNull(certC).getTime());
             System.out.println("DAY CERT: "+currentCert);
             if(certMed!=null&&currentDate.equals(currentCert)) {
                 return true;

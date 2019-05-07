@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
         private NotificationChannel channel;
@@ -55,6 +56,7 @@ public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
             mBuilder = build;
             pendingIntent = pending;
             user = FirebaseAuth.getInstance().getCurrentUser();
+            assert user != null;
             UID = user.getUid();
             myCalendar= Calendar.getInstance();
             abbC= Calendar.getInstance();
@@ -67,10 +69,10 @@ public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child("Utenti").child(UID).hasChild("Data Abbonamento")) {
-                        abb = dataSnapshot.child("Utenti").child(UID).child("Data Abbonamento").getValue().toString();
+                        abb = Objects.requireNonNull(dataSnapshot.child("Utenti").child(UID).child("Data Abbonamento").getValue()).toString();
                     }
                     if(dataSnapshot.child("Utenti").child(UID).hasChild("Mesi Abbonamento")){
-                        month = dataSnapshot.child("Utenti").child(UID).child("Mesi Abbonamento").getValue().toString();
+                        month = Objects.requireNonNull(dataSnapshot.child("Utenti").child(UID).child("Mesi Abbonamento").getValue()).toString();
                     }
                 }
 
@@ -156,7 +158,7 @@ public class NOTIFICATION_Thread_DayAbb extends Application implements Runnable{
             if(abbC!=null){
                 abbC.add(abbC.DAY_OF_MONTH,-1);
             }
-            currentAbb = sdf.format(abbC.getTime());
+            currentAbb = sdf.format(Objects.requireNonNull(abbC).getTime());
             System.out.println("DAY ABB: "+currentAbb);
             if(abb!=null&&currentDate.equals(currentAbb)){
                 return true;

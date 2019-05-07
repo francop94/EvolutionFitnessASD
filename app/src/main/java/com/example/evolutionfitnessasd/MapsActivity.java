@@ -126,8 +126,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ||ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED ) {
 
             mLocationRequest = new LocationRequest();
-            mLocationRequest.setInterval(20000); // 20 seconds
-            mLocationRequest.setFastestInterval(10000); //10 seconds
+            mLocationRequest.setInterval(200000); // 200 seconds
+            mLocationRequest.setFastestInterval(100000); //100 seconds
             mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         }
     }

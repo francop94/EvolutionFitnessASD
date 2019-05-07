@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class NOTIFICATION_Thread_DayAnn extends Application implements Runnable{
         private NotificationChannel channel;
@@ -55,6 +56,7 @@ public class NOTIFICATION_Thread_DayAnn extends Application implements Runnable{
             mBuilder = build;
             pendingIntent = pending;
             user = FirebaseAuth.getInstance().getCurrentUser();
+            assert user != null;
             UID = user.getUid();
             myCalendar= Calendar.getInstance();
             annC= Calendar.getInstance();
@@ -67,7 +69,7 @@ public class NOTIFICATION_Thread_DayAnn extends Application implements Runnable{
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child("Utenti").child(UID).hasChild("Data Quota Annuale")) {
-                        ann = dataSnapshot.child("Utenti").child(UID).child("Data Quota Annuale").getValue().toString();
+                        ann = Objects.requireNonNull(dataSnapshot.child("Utenti").child(UID).child("Data Quota Annuale").getValue()).toString();
                     }
                 }
                 @Override
@@ -124,7 +126,7 @@ public class NOTIFICATION_Thread_DayAnn extends Application implements Runnable{
                 annC.add(annC.DAY_OF_MONTH,-1);
 
             }
-            currentAnn = sdf.format(annC.getTime());
+            currentAnn = sdf.format(Objects.requireNonNull(annC).getTime());
             System.out.println("DAY ANN: "+currentAnn);
             if(ann!=null&&currentDate.equals(currentAnn)) {
                 return true;

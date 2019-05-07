@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/back"
         android:orientation="vertical"
         android:paddingLeft="24dp"
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/EditTextColorCustom"
-                android:autoText="true"
+                android:autofillHints="true"
                 android:drawableLeft="@drawable/ic_action_username"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -97,7 +97,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="Dimenticata la password?"
-            android:textSize="16dip" />
+            android:textSize="16dp" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/googleSignIn"

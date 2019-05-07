@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class NOTIFICATION_Thread_WeekCert extends Application implements Runnable{
         private NotificationChannel channel;
@@ -55,6 +56,7 @@ public class NOTIFICATION_Thread_WeekCert extends Application implements Runnabl
             mBuilder = build;
             pendingIntent = pending;
             user = FirebaseAuth.getInstance().getCurrentUser();
+            assert user != null;
             UID = user.getUid();
             myCalendar= Calendar.getInstance();
             certC= Calendar.getInstance();
@@ -68,7 +70,7 @@ public class NOTIFICATION_Thread_WeekCert extends Application implements Runnabl
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     if(dataSnapshot.child("Utenti").child(UID).hasChild("Data Certificato Medico")){
-                        certMed = dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue().toString();
+                        certMed = Objects.requireNonNull(dataSnapshot.child("Utenti").child(UID).child("Data Certificato Medico").getValue()).toString();
                     }
                 }
 
@@ -127,7 +129,7 @@ public class NOTIFICATION_Thread_WeekCert extends Application implements Runnabl
             if(certC!=null){
                 certC.add(certC.DAY_OF_MONTH,-7);
             }
-            currentCert = sdf.format(certC.getTime());
+            currentCert = sdf.format(Objects.requireNonNull(certC).getTime());
             System.out.println("WEEK CERT: "+currentCert);
             if(certMed!=null&&currentDate.equals(currentCert)) {
                 return true;

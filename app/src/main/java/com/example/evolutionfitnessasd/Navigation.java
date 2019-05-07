@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -238,15 +240,15 @@ public class Navigation extends AppCompatActivity
                         // whenever data at this location is updated.
                         String name, surname;
                         if(dataSnapshot.child("Utenti").child(uid).hasChild("Cognome")) {
-                            name = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
-                            surname = dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue().toString();
+                            name = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Nome").getValue()).toString();
+                            surname = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue()).toString();
 
                             if (name != null && surname != null) {
                                 textname.setText("Ciao, " + name + " " + surname);
                             }
                         }else{
                             if(dataSnapshot.child("Utenti").child(uid).hasChild("Nome")) {
-                                name = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
+                                name = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Nome").getValue()).toString();
                                 if (name != null) {
                                     textname.setText("Ciao, " + name);
                                 }

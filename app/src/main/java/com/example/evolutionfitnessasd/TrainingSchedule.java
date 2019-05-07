@@ -30,6 +30,7 @@ import com.google.firebase.storage.*;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 public class TrainingSchedule extends AppCompatActivity {
     private StorageReference mStorageRef;
@@ -53,10 +54,10 @@ public class TrainingSchedule extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                FROM = dataSnapshot.child("Utenti").child(uid).child("Email").getValue().toString();
-                NOME = dataSnapshot.child("Utenti").child(uid).child("Nome").getValue().toString();
+                FROM = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Email").getValue()).toString();
+                NOME = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Nome").getValue()).toString();
                 if(dataSnapshot.child("Utenti").child(uid).hasChild("Cognome")) {
-                    COGNOME = dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue().toString();
+                    COGNOME = Objects.requireNonNull(dataSnapshot.child("Utenti").child(uid).child("Cognome").getValue()).toString();
                 }
                 final ImageView imageView = findViewById(R.id.imageView);
                 //imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -106,7 +107,7 @@ public class TrainingSchedule extends AppCompatActivity {
                             Toast.makeText(TrainingSchedule.this, "Scheda non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_LONG).show();
                             Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
                         }
-                    });;
+                    });
                 }catch (Exception e){
                         Toast.makeText(TrainingSchedule.this, "Scheda non presente, per favore contatta il personal trainer per maggiori informazioni", Toast.LENGTH_SHORT).show();
                         Log.d("TRAINING SCHEDULE", e.getLocalizedMessage());
@@ -177,8 +178,7 @@ public class TrainingSchedule extends AppCompatActivity {
         String[] TO = {"chicco.1994@hotmail.it"};
         String[] FROM = {from};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
+        emailIntent.setDataAndType(Uri.parse("mailto:"),"text/plain");
 
 
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
